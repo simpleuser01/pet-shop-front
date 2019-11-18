@@ -1,1 +1,7 @@
-<p>type-list works!</p>
+<div *ngFor="let type of productTypes " >
+  <div (click)="getCategoryByType(type.productTypeName)">{{type.productTypeName}}
+    <div *ngFor="let category of productCategories">
+        {{category.productCategoryName}}
+    </div>
+  </div>
+</div>
