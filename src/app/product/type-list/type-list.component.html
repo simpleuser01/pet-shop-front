@@ -1,7 +1,91 @@
-<div *ngFor="let type of productTypes " >
-  <div (click)="getCategoryByType(type.productTypeName)">{{type.productTypeName}}
-    <div *ngFor="let category of productCategories">
-        {{category.productCategoryName}}
+<!--work-->
+<ul *ngFor="let type of productTypes " >
+  <li (click)="getCategoryByType(type.productTypeEngName)">{{type.productTypeName}}
+    <div *ngIf="clickedType === type.productTypeEngName">
+      <ul *ngFor="let category of productCategories">
+        <li (click)="getProductsAndSubCategories(category.productCategoryEngName)">
+          {{category.productCategoryName}}
+          <div *ngIf="clickedCategory===category.productCategoryEngName">
+            <ul *ngFor="let subcategory of productSubcategories">
+             <li> <!--(click)="getProductBySubcategory(subcategory.productSubcategoryEngName)"-->
+               {{subcategory.productSubcategoryName}}</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </li>
+</ul>
+
+
+
+  <div *ngFor="let product of products">
+    <div>{{product.productId}}</div>
+    <div>{{product.productName}}</div>
+    <div>{{product.productDescription}}</div>
+    <div>{{product.productStructure}}</div>
+    <div>{{product.productMaker.productMakerName}}</div>
+    <div *ngFor="let size of product.productSizes">
+      {{size.productSizeValue}}
+      <div *ngFor="let price of size.productPrices">
+        {{price.productPriceValue}}
+      </div>
     </div>
   </div>
-</div>
+
+
+
+
+
+
+<!-- ---------------------------------------------------->
+
+
+
+<!--<div *ngFor="let product of products">
+  <div *ngFor="let category of product.productSubcategory.productCategories">
+      <ul *ngFor="let type of category.productTypes">
+          <li>{{type.productTypeName}}</li>
+      </ul>
+  </div>
+
+</div>-->
+<!--<div *ngFor="let product of products">
+  <ul *ngFor="let type of product.productSubcategory.productCategories.productTypes.productTypeName">
+    <li>{{type}}</li>
+  </ul>
+</div>-->
+
+
+<!--<ul *ngFor="let type of productTypes " >
+  <li (click)="getCategoryByType(type.productTypeEngName)" >{{type.productTypeName}}
+    <div *ngFor="let product of products">
+      <ul *ngFor="let category of product.productSubcategory.productCategories">
+        <div *ngIf="clickedType === type.productTypeEngName">
+        <ul>
+          {{category.productCategoryName}}
+
+&lt;!&ndash;          <ul *ngFor="let subcategory of product.productSubcategory">
+            <li>{{subcategory[0]}}</li>
+          </ul>&ndash;&gt;
+&lt;!&ndash;          <ul>
+              {{product.productSubcategory.productSubcategoryName}}
+          </ul>&ndash;&gt;
+&lt;!&ndash;          <ul *ngFor="let kek of product.productSubcategory">
+            <ul *ngFor="let lal of kek">
+              <li>{{lal}}</li>
+            </ul>
+          </ul>
+        </ul>&ndash;&gt;
+        </div>
+      </ul>
+    </div>
+
+  </li>
+</ul>-->
+
+
+
+
+
+

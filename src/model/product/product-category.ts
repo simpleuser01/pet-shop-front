@@ -1,5 +1,8 @@
+import {ProductType} from './product-type';
+
 export class ProductCategory {
   productCategoryId: number;
   productCategoryName: string;
-  productCategoryNameEng: string;
+  productCategoryEngName: string;
+  productTypes: ProductType[];
 }

@@ -1,4 +1,6 @@
 import {ProductMaker} from './product-maker';
+import {ProductSize} from './product-size';
+import {ProductSubcategory} from './product-subcategory';
 
 export class Product {
   productId: number;
@@ -7,5 +9,7 @@ export class Product {
   productDescription: string;
   productStructure: string;
   productMaker: ProductMaker;
+  productSizes: ProductSize[];
+  productSubcategory: ProductSubcategory;
 
 }
