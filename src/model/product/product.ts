@@ -8,6 +8,7 @@ export class Product {
   productEngName: string;
   productDescription: string;
   productStructure: string;
+  productImage: string;
   productMaker: ProductMaker;
   productSizes: ProductSize[];
   productSubcategory: ProductSubcategory;

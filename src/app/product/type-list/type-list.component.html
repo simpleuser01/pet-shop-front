@@ -7,7 +7,7 @@
           {{category.productCategoryName}}
           <div *ngIf="clickedCategory===category.productCategoryEngName">
             <ul *ngFor="let subcategory of productSubcategories">
-             <li> <!--(click)="getProductBySubcategory(subcategory.productSubcategoryEngName)"-->
+             <li (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
                {{subcategory.productSubcategoryName}}</li>
             </ul>
           </div>
@@ -18,7 +18,7 @@
 </ul>
 
 
-
+<div *ngIf="clickedSubCategory">
   <div *ngFor="let product of products">
     <div>{{product.productId}}</div>
     <div>{{product.productName}}</div>
@@ -32,6 +32,17 @@
       </div>
     </div>
   </div>
+
+</div>
+
+<div *ngIf="clickedCategory">
+  <div *ngFor="let product of categoryProducts">
+    <div>{{product.productName}}</div>
+    <div>{{product.productImage}}</div>
+  </div>
+
+</div>
+
 
 
 

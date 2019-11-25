@@ -31,6 +31,10 @@ export class ProductServiceService {
     return this.httpClient.get<ProductSubcategory[]>(this.url + '/catalog/' + `${type}` + '/' +  `${category}`);
   }
 
+
+
+
+
   getProductByCategory(category: string, type: string): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.url + '/catalog/product/' + `${type}` + '/' +  `${category}`);
   }
@@ -40,11 +44,7 @@ export class ProductServiceService {
   }
 
 
-  // TO-DO
- /* getAllTypes(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.url + '/catalog');
-}
-*/
+
   getProductByType(type: string): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.url + '/catalog/product/' + `${type}`);
   }

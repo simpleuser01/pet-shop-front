@@ -4,6 +4,7 @@ import {ProductServiceService} from '../../../services/product/product-service.s
 import {ProductType} from '../../../model/product/product-type';
 import {ProductCategory} from '../../../model/product/product-category';
 import {ProductSubcategory} from '../../../model/product/product-subcategory';
+import {empty} from 'rxjs';
 
 @Component({
   selector: 'app-type-list',
@@ -11,10 +12,12 @@ import {ProductSubcategory} from '../../../model/product/product-subcategory';
   styleUrls: ['./type-list.component.scss']
 })
 export class TypeListComponent implements OnInit {
+
     productTypes: Array<ProductType>;
     productCategories: Array<ProductCategory>;
     productSubcategories: Array<ProductSubcategory>;
     products: Array<Product>;
+    categoryProducts: Array<Product>;
 
 
     clickedType: string;
@@ -37,6 +40,8 @@ export class TypeListComponent implements OnInit {
       console.log('type: ' + this.clickedType);
       this.productService.getCategoryByType(this.clickedType)
         .subscribe(data => this.productCategories = data);
+      this.products = null;
+      this.categoryProducts = null;
   }
 
 
@@ -48,7 +53,7 @@ export class TypeListComponent implements OnInit {
   getProductByCategory(category: string) {
     this.clickedCategory = category;
     this.productService.getProductByCategory(this.clickedCategory, this.clickedType)
-      .subscribe(data => this.products = data);
+      .subscribe(data => this.categoryProducts = data);
   }
 
   getSubcategoryByCategory(category: string) {
@@ -64,6 +69,6 @@ export class TypeListComponent implements OnInit {
     console.log('type + category + subcategory : ' + this.clickedType + ' ' + this.clickedCategory + ' ' + this.clickedSubCategory );
     this.productService.getProductBySubcategory(this.clickedType, this.clickedCategory, this.clickedSubCategory)
       .subscribe(data => this.products = data);
+    this.clickedType = null;
   }
-
 }
