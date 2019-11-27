@@ -18,7 +18,7 @@ export class TypeListComponent implements OnInit {
     productSubcategories: Array<ProductSubcategory>;
     products: Array<Product>;
     categoryProducts: Array<Product>;
-
+    data: any;
 
     clickedType: string;
     clickedCategory: string;
@@ -54,6 +54,10 @@ export class TypeListComponent implements OnInit {
     this.clickedCategory = category;
     this.productService.getProductByCategory(this.clickedCategory, this.clickedType)
       .subscribe(data => this.categoryProducts = data);
+   /* this.categoryProducts.forEach( product => {
+        this.getImageById(product.productId);
+      });
+*/
   }
 
   getSubcategoryByCategory(category: string) {
@@ -70,5 +74,16 @@ export class TypeListComponent implements OnInit {
     this.productService.getProductBySubcategory(this.clickedType, this.clickedCategory, this.clickedSubCategory)
       .subscribe(data => this.products = data);
     this.clickedType = null;
+  }
+
+
+  getImageById(id: number) {
+    this.productService.getImageById(id)
+      .subscribe(data => this.data = data);
+  }
+
+  addProductToCartList(product: Product) {
+    this.productService.addProductToCartList(product)
+      .subscribe();
   }
 }

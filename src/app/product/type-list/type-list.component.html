@@ -17,28 +17,40 @@
   </li>
 </ul>
 
+<div>
 
-<div *ngIf="clickedSubCategory">
-  <div *ngFor="let product of products">
-    <div>{{product.productId}}</div>
-    <div>{{product.productName}}</div>
-    <div>{{product.productDescription}}</div>
-    <div>{{product.productStructure}}</div>
-    <div>{{product.productMaker.productMakerName}}</div>
-    <div *ngFor="let size of product.productSizes">
-      {{size.productSizeValue}}
-      <div *ngFor="let price of size.productPrices">
-        {{price.productPriceValue}}
+  <div *ngIf="clickedSubCategory">
+    <div *ngFor="let product of products">
+      <div>{{product.productId}}</div>
+      <div>{{product.productName}}</div>
+      <div>{{product.productDescription}}</div>
+      <div>{{product.productStructure}}</div>
+      <div>{{product.productMaker.productMakerName}}</div>
+      <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
+      <div *ngFor="let size of product.productSizes">
+        {{size.productSizeValue}}
+        <div *ngFor="let price of size.productPrices">
+          {{price.productPriceValue}}
+        </div>
+      </div>
+
+      <div>
+        <button (click)="addProductToCartList(product)">add to cart list</button>
       </div>
     </div>
+
   </div>
 
+
 </div>
+
 
 <div *ngIf="clickedCategory">
   <div *ngFor="let product of categoryProducts">
     <div>{{product.productName}}</div>
     <div>{{product.productImage}}</div>
+      <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
+ <!--   <img src="{{data}}">-->
   </div>
 
 </div>

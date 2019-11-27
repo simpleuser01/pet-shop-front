@@ -1,0 +1,16 @@
+  <div *ngFor="let product of products">
+    <div>{{product.productId}}</div>
+    <div>{{product.productName}}</div>
+    <div>{{product.productDescription}}</div>
+    <div>{{product.productStructure}}</div>
+    <div>{{product.productMaker.productMakerName}}</div>
+    <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
+    <div *ngFor="let size of product.productSizes">
+      {{size.productSizeValue}}
+      <div *ngFor="let price of size.productPrices">
+        {{price.productPriceValue}}
+      </div>
+    </div>
+  </div>
+
+
