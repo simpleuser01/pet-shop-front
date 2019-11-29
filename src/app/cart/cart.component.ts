@@ -20,6 +20,12 @@ export class CartComponent implements OnInit {
   getCartList() {
     this.productService.getCartList().subscribe(data => this.products = data);
   }
+
+  deleteProductFromCartList(product: Product) {
+  this.productService.deleteProductFromCartList(product).subscribe(data => this.getCartList());
+
   }
+}
+
 
 

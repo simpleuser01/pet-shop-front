@@ -68,7 +68,12 @@ export class ProductServiceService {
   getCartList(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.url + '/cart');
   }
+
+  deleteProductFromCartList(product: Product): Observable<any> {
+    return this.httpClient.delete(this.url + '/cart' + '/' + `${product.productId}`);
+  }
 }
+
 
 
 
