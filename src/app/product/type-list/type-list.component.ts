@@ -5,6 +5,7 @@ import {ProductType} from '../../../model/product/product-type';
 import {ProductCategory} from '../../../model/product/product-category';
 import {ProductSubcategory} from '../../../model/product/product-subcategory';
 import {empty} from 'rxjs';
+import {CartService} from '../../../services/cart/cart.service';
 
 @Component({
   selector: 'app-type-list',
@@ -24,7 +25,7 @@ export class TypeListComponent implements OnInit {
     clickedCategory: string;
     clickedSubCategory: string;
 
-  constructor(private productService: ProductServiceService) { }
+  constructor(private productService: ProductServiceService, private cartService: CartService) { }
 
   ngOnInit() {
 
@@ -83,7 +84,7 @@ export class TypeListComponent implements OnInit {
   }
 
   addProductToCartList(product: Product) {
-    this.productService.addProductToCartList(product)
+    this.cartService.addProductToCartList(product)
       .subscribe();
   }
 }

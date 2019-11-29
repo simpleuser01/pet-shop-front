@@ -61,17 +61,7 @@ export class ProductServiceService {
     return this.httpClient.get(this.url + '/images/' + `${id}`);
   }
 
-  addProductToCartList(product: Product) {
-      return this.httpClient.post(this.url + '/cart', product);
-  }
 
-  getCartList(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.url + '/cart');
-  }
-
-  deleteProductFromCartList(product: Product): Observable<any> {
-    return this.httpClient.delete(this.url + '/cart' + '/' + `${product.productId}`);
-  }
 }
 
 

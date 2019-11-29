@@ -1,0 +1,19 @@
+<div>
+  <div *ngFor="let order of orders">
+    <div>{{order.orderId}}</div>
+    <div>{{order.orderDeliveryType}}</div>
+      <div>{{order.orderDescription}}</div>
+        <div>{{order.orderSumm}}</div>
+            <div *ngFor=" let orderProduct of orderProducts">
+              <div>{{orderProduct.productQuantity}}</div>
+              <div>{{orderProduct.productSumm}}</div>
+                 <!-- <div *ngFor="let product of products">
+                    <div>{{product.productId}}</div>
+                     <div>{{product.productName}}</div>
+                      <div>{{product.productDescription}}</div>
+                      <div>{{product.productStructure}}</div>
+                      <div>{{product.productMaker.productMakerName}}</div>-->
+                  </div>
+            </div>
+  </div>
+
