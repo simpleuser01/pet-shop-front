@@ -13,7 +13,8 @@ export class OrderComponent implements OnInit {
 
   orders: Array<Order>;
   orderProducts: Array<OrderProduct>;
-  products: Array<Product>
+  products: Array<Product>;
+  id: number;
 
   constructor(private orderService: OrderService) { }
 
@@ -23,5 +24,11 @@ export class OrderComponent implements OnInit {
 
   getAllOrders() {
     this.orderService.getAllOrders().subscribe(data => this.orders = data );
+  }
+
+
+  getProductsByOrderId(id: number) {
+    this.id = id;
+    this.orderService.getProductsByOrderId(this.id).subscribe(data => this.products = data);
   }
 }
