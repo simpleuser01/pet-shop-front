@@ -5,13 +5,11 @@
     <div>{{product.productStructure}}</div>
     <div>{{product.productMaker.productMakerName}}</div>
     <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
-    <div *ngFor="let size of product.productSizes">
-      {{size.productSizeValue}}
-      <div *ngFor="let price of size.productPrices">
-        {{price.productPriceValue}}
-      </div>
-    </div>
+    <div>{{product.productSize}}</div>
+    <div>{{product.productPrice}}</div>
     <button (click)="deleteProductFromCartList(product)">delete</button>
   </div>
+
+  <button (click)="addToOrders()">add to order</button>
 
 

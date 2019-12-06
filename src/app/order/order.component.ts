@@ -29,6 +29,8 @@ export class OrderComponent implements OnInit {
 
   getProductsByOrderId(id: number) {
     this.id = id;
-    this.orderService.getProductsByOrderId(this.id).subscribe(data => this.products = data);
+   // this.orderService.getProductsByOrderId(this.id).subscribe(data => this.products = data);
   }
+
+
 }

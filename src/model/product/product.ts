@@ -1,6 +1,7 @@
 import {ProductMaker} from './product-maker';
 import {ProductSize} from './product-size';
 import {ProductSubcategory} from './product-subcategory';
+import {OrderProduct} from '../order/order-product';
 
 export class Product {
   productId: number;
@@ -12,5 +13,8 @@ export class Product {
   productMaker: ProductMaker;
   productSizes: ProductSize[];
   productSubcategory: ProductSubcategory;
+  productSize: string;
+  productPrice: number;
+  orderProducts: OrderProduct[];
 
 }

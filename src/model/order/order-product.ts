@@ -6,5 +6,6 @@ export class OrderProduct {
   id: OrderProductKey;
   productQuantity: number;
   productSumm: number;
-  products: Product[];
+  productSize: string;
+  product: Product;
 }

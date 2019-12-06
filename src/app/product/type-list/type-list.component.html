@@ -27,11 +27,9 @@
       <div>{{product.productStructure}}</div>
       <div>{{product.productMaker.productMakerName}}</div>
       <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
-      <div *ngFor="let size of product.productSizes">
+      <div *ngFor="let size of product.productSizes" (click)="getSizeAndPrice(size)">
         {{size.productSizeValue}}
-        <div *ngFor="let price of size.productPrices">
-          {{price.productPriceValue}}
-        </div>
+        {{size.productPrice}}
       </div>
 
       <div>

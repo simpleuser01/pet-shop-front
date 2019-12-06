@@ -16,7 +16,11 @@ export class OrderService {
     return this.httpClient.get<Order[]>(this.url + '/admin/orders');
   }
 
-  getProductsByOrderId(id: number): Observable<Product[]>{
+  getProductsByOrderId(id: number): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.url + '/admin/orders/' + `${id}`);
+  }
+
+  addOrder(products: Product[]): Observable<Order[]> {
+    return  this.httpClient.post<Order[]>(this.url   + '/admin/orders/', products);
   }
 }

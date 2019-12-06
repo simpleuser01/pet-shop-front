@@ -15,25 +15,40 @@
 
 
             <div *ngIf="id===order.orderId">
-              <div *ngFor="let product of products">
-                <div>{{product.productId}}</div>
+              <div *ngFor="let product of order.orderProducts">
+
+
+                <div>{{product.product.productName}}</div>
+                <div>{{product.product.productDescription}}</div>
+                <div>{{product.product.productStructure}}</div>
+                <div>{{product.product.productMaker.productMakerName}}</div>
+                <img src="http://localhost:8080/petshop.by/image/{{product.product.productId}}">
+                <div>size {{product.productSize}}</div>
+                <div> quantity {{product.productQuantity}}</div>
+                <div> product summ{{product.productSumm}}</div>
+
+                <br>
+
+          <!--      <div>{{product.productId}}</div>
                 <div>{{product.productName}}</div>
                 <div>{{product.productDescription}}</div>
                 <div>{{product.productStructure}}</div>
                 <div>{{product.productMaker.productMakerName}}</div>
-                <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
+                <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">-->
       <!--          <div>{{order.orderProducts.}}</div>-->
-                <div *ngFor="let size of product.productSizes">
-                  {{size.productSizeValue}}
-                  <div *ngFor="let price of size.productPrices">
-                    {{price.productPriceValue}}
-                  </div>
-                </div>
-                  <!--  <div *ngFor="let productOrder of order.orderProducts">
+                <!--  <div *ngFor="let productOrder of order.orderProducts">
                           <div>{{productOrder.productQuantity}}</div>
                           <div>{{productOrder.productSumm}}</div>
                     </div>-->
               </div>
+             <!-- <div *ngFor="let info of order.orderProducts">
+                <div>{{info.productQuantity}}</div>
+                <div>{{info.productSumm}}</div>
+                <div>{{info.productSize}}</div>
+              </div>-->
+
+
+
 
             </div>
 

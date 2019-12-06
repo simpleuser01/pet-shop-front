@@ -6,6 +6,7 @@ import {ProductCategory} from '../../../model/product/product-category';
 import {ProductSubcategory} from '../../../model/product/product-subcategory';
 import {empty} from 'rxjs';
 import {CartService} from '../../../services/cart/cart.service';
+import {ProductSize} from '../../../model/product/product-size';
 
 @Component({
   selector: 'app-type-list',
@@ -20,10 +21,15 @@ export class TypeListComponent implements OnInit {
     products: Array<Product>;
     categoryProducts: Array<Product>;
     data: any;
+    product: Product;
 
     clickedType: string;
     clickedCategory: string;
     clickedSubCategory: string;
+
+
+    productPrice: number;
+    productSize: string;
 
   constructor(private productService: ProductServiceService, private cartService: CartService) { }
 
@@ -84,7 +90,18 @@ export class TypeListComponent implements OnInit {
   }
 
   addProductToCartList(product: Product) {
-    this.cartService.addProductToCartList(product)
+    this.product = product;
+    this.product.productSize = this.productSize;
+    this.product.productPrice = this.productPrice;
+    this.cartService.addProductToCartList(this.product)
       .subscribe();
   }
+
+  getSizeAndPrice(size: ProductSize) {
+    this.productSize = size.productSizeValue;
+    this.productPrice = size.productPrice;
+  }
+
+
+
 }
