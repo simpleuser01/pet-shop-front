@@ -62,6 +62,15 @@ export class ProductServiceService {
   }
 
 
+  addProduct(product: Product){
+    return this.httpClient.post(this.url + '/admin/add', product);
+  }
+
+
+  getALlProductMakers(): Observable<any[]>{
+    return this.httpClient.get<any[]>(this.url + '/makers')
+  }
+
 }
 
 
