@@ -1,0 +1,31 @@
+<form [formGroup]="addFormGroup" >
+  name<input name="productName" formControlName="productName">
+  engname<input name="productEngName" formControlName="productEngName">
+  descript<input name="productDescription" formControlName="productDescription">
+  structure<input name="productStructure" formControlName="productStructure">
+
+
+  <select class="custom-select" formControlName="productMaker" >
+    <option value="" disabled>Choose product maker</option>
+    <option  *ngFor="let productMaker of productMakers" [ngValue]="productMaker" >{{productMaker.productMakerName}}</option>
+  </select>
+
+
+  <select class="custom-select" formControlName="productSubcategory" >
+    <option value="" disabled>Choose product maker</option>
+    <option  *ngFor="let productSubcategory of productSubcategories" [ngValue]="productSubcategory" >{{productSubcategory.productSubcategoryName}}</option>
+  </select>
+
+  <select class="custom-select" formControlName="productCategory">
+    <option value="" disabled>Choose product maker</option>
+    <option  *ngFor="let productCategory of productCategories" [ngValue]="productCategory" >{{productCategory.productCategoryName}}</option>
+  </select>
+
+
+  <select class="custom-select" formControlName="productType">
+    <option value="" disabled>Choose product maker</option>
+    <option  *ngFor="let productType of productTypes" [ngValue]="productType" >{{productType.productTypeName}}</option>
+  </select>
+
+  <button (click)="onSubmit()">add product</button>
+</form>
