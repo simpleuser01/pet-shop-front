@@ -32,5 +32,9 @@ export class OrderComponent implements OnInit {
    // this.orderService.getProductsByOrderId(this.id).subscribe(data => this.products = data);
   }
 
+  deleteOrder(id: number) {
+    this.orderService.deleteOrder(id).subscribe(data => this.getAllOrders());
+  }
+
 
 }

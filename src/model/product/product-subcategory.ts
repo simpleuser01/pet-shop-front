@@ -4,5 +4,6 @@ export class ProductSubcategory {
   productSubcategoryId: number;
   productSubcategoryName: string;
   productSubcategoryEngName: string;
-  productCategories: ProductCategory[];
+  /*productCategories: ProductCategory[];*/
+  productCategory: ProductCategory;
 }

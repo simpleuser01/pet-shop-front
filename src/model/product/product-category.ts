@@ -4,5 +4,5 @@ export class ProductCategory {
   productCategoryId: number;
   productCategoryName: string;
   productCategoryEngName: string;
-  productTypes: ProductType[];
+  productType: ProductType;
 }

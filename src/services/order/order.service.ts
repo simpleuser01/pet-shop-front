@@ -23,4 +23,9 @@ export class OrderService {
   addOrder(products: Product[]): Observable<Order[]> {
     return  this.httpClient.post<Order[]>(this.url   + '/admin/orders/', products);
   }
+
+
+  deleteOrder(id: number) {
+    return this.httpClient.delete(this.url + '/admin/orders/' + `${id}`);
+  }
 }
