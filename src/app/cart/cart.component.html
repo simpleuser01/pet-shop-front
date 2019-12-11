@@ -8,8 +8,15 @@
     <div>{{product.productSize}}</div>
     <div>{{product.productPrice}}</div>
     <button (click)="deleteProductFromCartList(product)">delete</button>
+      <br>
+      <button (click)="moreQuantity()">+</button>
+      <br>
+      <div>{{quantity}}</div>
+      <br>
+      <button (click)="lessQuantity()">-</button>
+      <br>
   </div>
 
-  <button (click)="addToOrders()">add to order</button>
+  <button (click)="addToOrders(orderProduct)">add to order</button>
 
 

@@ -8,7 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import {OrderComponent} from './order/order.component';
 import { ProductAddComponent } from './product/product-add/product-add.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

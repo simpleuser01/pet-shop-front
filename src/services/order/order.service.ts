@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Order} from '../../model/order/order';
 import {Product} from '../../model/product/product';
+import {OrderProduct} from '../../model/order/order-product';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class OrderService {
     return this.httpClient.get<Product[]>(this.url + '/admin/orders/' + `${id}`);
   }
 
-  addOrder(products: Product[]): Observable<Order[]> {
-    return  this.httpClient.post<Order[]>(this.url   + '/admin/orders/', products);
+  addOrder(orderProduct: OrderProduct): Observable<Order[]> {
+    return  this.httpClient.post<Order[]>(this.url   + '/admin/orders/', orderProduct);
   }
 
 

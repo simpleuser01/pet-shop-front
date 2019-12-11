@@ -16,11 +16,15 @@ export class CartComponent implements OnInit {
   products: Array<Product>;
   order: Order;
   orderProducts: Array<OrderProduct>;
+  orderProduct = new OrderProduct();
+  quantity: number;
+
 
   constructor(private cartService: CartService, private orderService: OrderService) { }
 
   ngOnInit() {
     this.getCartList();
+    this.quantity = 1;
   }
 
 
@@ -35,10 +39,20 @@ export class CartComponent implements OnInit {
 
 
 
-  addToOrders() {
+  addToOrders(orderProduct: OrderProduct) {
+    this.orderProduct = orderProduct;
+    this.orderProduct.productQuantity = this.quantity;
+    this.orderService.addOrder(this.orderProduct).subscribe();
+  }
+
+  moreQuantity() {
+    this.quantity++;
+    console.log(this.quantity);
+  }
 
 
-    this.orderService.addOrder(this.products).subscribe();
+  lessQuantity() {
+    this.quantity--;
   }
 }
 
