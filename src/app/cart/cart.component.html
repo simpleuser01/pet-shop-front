@@ -17,6 +17,34 @@
       <br>
   </div>
 
-  <button (click)="addToOrders(orderProduct)">add to order</button>
+
+ <form [formGroup]="order" (ngSubmit)="callF()">
+    <input type="text" formControlName="orderDeliveryType" placeholder="delivery type">
+
+    <input type="text" placeholder="description" formControlName="orderDescription">
+
+    <div formGroupName="unregisterClient">
+
+      <input type="text" placeholder="first name" formGroupName="clientFirstName" >
+      <input type="text" placeholder="email" formGroupName="clientEmail">
+      <input type="text" placeholder="tel" formGroupName="clientTel" >
+
+    </div>
+   <button type="submit">press</button>
+  </form>
+
+   <!-- <form #myForm="ngForm" (ngSubmit)="addToOrders(myForm)">
+      <input type="text"  placeholder="delivery type" name="orderDeliveryType" [(ngModel)]="order.orderDeliveryType" >
+      <input type="text" placeholder="description" name="orderDescription" [(ngModel)]="order.orderDescription" >
+
+      <input type="text" placeholder="first name" name="clientFirstName" [(ngModel)]="order.unregisterClient.clientFirstName" >
+      <input type="text" placeholder="email" [(ngModel)]="order.unregisterClient.clientEmail">
+      <input type="text" placeholder="tel"  [(ngModel)]="order.unregisterClient.clientTel">
+    </form>-->
+
+
+
+
+  <button (click)="addToOrders()">add to order</button>
 
 

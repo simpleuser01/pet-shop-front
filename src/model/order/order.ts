@@ -1,4 +1,5 @@
 import {OrderProduct} from './order-product';
+import {UnregisterClient} from '../client/Unregister/unregister-client';
 
 export class Order {
   orderId: number;
@@ -6,6 +7,6 @@ export class Order {
   orderDeliveryType: string;
   orderDescription: string;
   orderProducts: OrderProduct[];
-
+  unregisterClient: UnregisterClient;
 
 }

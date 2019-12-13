@@ -21,8 +21,8 @@ export class OrderService {
     return this.httpClient.get<Product[]>(this.url + '/admin/orders/' + `${id}`);
   }
 
-  addOrder(orderProduct: OrderProduct): Observable<Order[]> {
-    return  this.httpClient.post<Order[]>(this.url   + '/admin/orders/', orderProduct);
+  addOrder(order: Order): Observable<Order[]> {
+    return  this.httpClient.post<Order[]>(this.url   + '/admin/orders/', order);
   }
 
 
