@@ -6,7 +6,7 @@ import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../model/order/order';
 import {templateJitUrl} from '@angular/compiler';
 import {OrderProduct} from '../../model/order/order-product';
-import {FormControl, FormGroup, NgForm} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
 import {UnregisterClient} from '../../model/client/Unregister/unregister-client';
 
 @Component({
@@ -20,29 +20,34 @@ export class CartComponent implements OnInit {
   orderProducts: Array<OrderProduct>;
   orderProduct = new OrderProduct();
   quantity: number;
-  unregisterHuister = new UnregisterClient();
+  unregisterClient: UnregisterClient;
   order: FormGroup;
 //  unregisterClient: FormGroup;
 
 
-  constructor(private cartService: CartService, private orderService: OrderService) { }
+  constructor(private cartService: CartService, private orderService: OrderService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getCartList();
     this.quantity = 1;
 
 
-    this.order = new FormGroup({
-      orderDeliveryType : new FormControl(),
-      orderDescription: new FormControl(),
-      unregisterClient : new FormGroup({
-        clientFirstName: new FormControl(),
-        clientEmail: new FormControl(),
-        clientTel: new FormControl()
+    this.order = this.fb.group({
+      orderDeliveryType : [''],
+      orderDescription: [''],
+      unregisterClient: this.fb.group({
+        clientFirstName: [''],
+        clientEmail: [''],
+        clientTel: [''],
+          clientAddress: this.fb.group({
+            addressCountry: [''],
+            addressCity: [''],
+            addressStreet: [''],
+            addressHome: [''],
+            addressFlat: ['']
+          })
       })
     });
-
-
   }
 
 
@@ -64,13 +69,9 @@ export class CartComponent implements OnInit {
   }*/
 
   addToOrders() {
-   /* this.order = this.orderGroup.value;
-    /!*this.unregisterHuister = this.unregisterClient.value;
-    this.order.unregisterClient = this.unregisterHuister;*!/
-    this.order.unregisterClient = this.unregisterClient.value;*/
-    this.order = this.order.value;
+    this.newOrder = this.order.value;
     this.orderService.addOrder(this.newOrder).subscribe();
-    console.log(this.order);
+    console.log(this.newOrder);
   }
 
   moreQuantity() {
@@ -81,11 +82,6 @@ export class CartComponent implements OnInit {
 
   lessQuantity() {
     this.quantity--;
-  }
-
-
-  callF() {
-    console.log(this.order.value);
   }
 }
 

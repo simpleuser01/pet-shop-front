@@ -18,19 +18,32 @@
   </div>
 
 
- <form [formGroup]="order" (ngSubmit)="callF()">
+ <form [formGroup]="order">
     <input type="text" formControlName="orderDeliveryType" placeholder="delivery type">
 
     <input type="text" placeholder="description" formControlName="orderDescription">
 
     <div formGroupName="unregisterClient">
 
-      <input type="text" placeholder="first name" formGroupName="clientFirstName" >
-      <input type="text" placeholder="email" formGroupName="clientEmail">
-      <input type="text" placeholder="tel" formGroupName="clientTel" >
+      <input type="text" placeholder="first name" formControlName="clientFirstName" >
+      <input type="text" placeholder="email" formControlName="clientEmail">
+      <input type="text" placeholder="tel" formControlName="clientTel" >
 
+
+      <div formGroupName="clientAddress">
+
+        <input type="text" placeholder="country" formControlName="addressCountry" >
+        <input type="text" placeholder="city" formControlName="addressCity">
+        <input type="text" placeholder="street" formControlName="addressStreet" >
+        <input type="text" placeholder="home" formControlName="addressHome" >
+        <input type="text" placeholder="flat" formControlName="addressFlat" >
+
+      </div>
     </div>
-   <button type="submit">press</button>
+
+
+
+  <!-- <button type="submit">press</button>-->
   </form>
 
    <!-- <form #myForm="ngForm" (ngSubmit)="addToOrders(myForm)">
