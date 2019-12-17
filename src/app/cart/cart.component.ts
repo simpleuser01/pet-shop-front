@@ -8,6 +8,7 @@ import {templateJitUrl} from '@angular/compiler';
 import {OrderProduct} from '../../model/order/order-product';
 import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
 import {UnregisterClient} from '../../model/client/Unregister/unregister-client';
+import {OrderWrapper} from '../../model/order/order-wrapper';
 
 @Component({
   selector: 'app-cart',
@@ -24,12 +25,19 @@ export class CartComponent implements OnInit {
   order: FormGroup;
 //  unregisterClient: FormGroup;
 
+  orderWrapper = new OrderWrapper();
+
+
+  map: Map<number, number> = new Map<number, number>();
+
 
   constructor(private cartService: CartService, private orderService: OrderService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getCartList();
     this.quantity = 1;
+
+
 
 
     this.order = this.fb.group({
@@ -48,11 +56,21 @@ export class CartComponent implements OnInit {
           })
       })
     });
+
+   // this.map.set(1, this.quantity);
+
+  }
+
+
+
+  addProductsToMap() {
+    this.products.forEach(p => this.map.set(p.productId, this.quantity));
   }
 
 
   getCartList() {
-    this.cartService.getCartList().subscribe(data => this.products = data);
+    this.cartService.getCartList().subscribe(data => { this.products = data,
+          this.addProductsToMap(); });
   }
 
   deleteProductFromCartList(product: Product) {
@@ -70,18 +88,32 @@ export class CartComponent implements OnInit {
 
   addToOrders() {
     this.newOrder = this.order.value;
-    this.orderService.addOrder(this.newOrder).subscribe();
+    this.orderProduct.productQuantity = this.quantity;
+    this.orderWrapper.order = this.newOrder;
+  /*  this.orderWrapper.orderProduct = this.orderProduct;*/
+    this.orderWrapper.map = this.map;
+    this.orderService.addOrder(this.orderWrapper).subscribe();
     console.log(this.newOrder);
+    console.log(this.orderWrapper);
+    console.log(this.map);
   }
 
-  moreQuantity() {
-    this.quantity++;
-    console.log(this.quantity);
+  moreQuantity(product: Product) {
+   let q = this.map.get(product.productId);
+   q++;
+   this.map.set(product.productId, q);
+   console.log(this.map);
   }
 
 
-  lessQuantity() {
-    this.quantity--;
+  lessQuantity(product: Product) {
+    let q = this.map.get(product.productId);
+    q--;
+    if (q === 0) {
+      q = 1;
+    }
+    this.map.set(product.productId, q );
+    console.log(this.map);
   }
 }
 

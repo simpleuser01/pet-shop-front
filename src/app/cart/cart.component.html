@@ -9,11 +9,11 @@
     <div>{{product.productPrice}}</div>
     <button (click)="deleteProductFromCartList(product)">delete</button>
       <br>
-      <button (click)="moreQuantity()">+</button>
+      <button (click)="moreQuantity(product)">+</button>
       <br>
-      <div>{{quantity}}</div>
+      <div>{{map.get(product.productId)}}</div>
       <br>
-      <button (click)="lessQuantity()">-</button>
+      <button (click)="lessQuantity(product)">-</button>
       <br>
   </div>
 

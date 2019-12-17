@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Order} from '../../model/order/order';
 import {Product} from '../../model/product/product';
 import {OrderProduct} from '../../model/order/order-product';
+import {OrderWrapper} from '../../model/order/order-wrapper';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,8 @@ export class OrderService {
     return this.httpClient.get<Product[]>(this.url + '/admin/orders/' + `${id}`);
   }
 
-  addOrder(order: Order): Observable<Order[]> {
-    return  this.httpClient.post<Order[]>(this.url   + '/admin/orders/', order);
+  addOrder(order: OrderWrapper): Observable<Order[]> {
+    return  this.httpClient.post<Order[]>(this.url   + '/admin/orders/', order );
   }
 
 
