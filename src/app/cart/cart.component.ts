@@ -91,11 +91,20 @@ export class CartComponent implements OnInit {
     this.orderProduct.productQuantity = this.quantity;
     this.orderWrapper.order = this.newOrder;
   /*  this.orderWrapper.orderProduct = this.orderProduct;*/
-    this.orderWrapper.map = this.map;
+    this.orderWrapper.map = this.mapToObj(this.map);
     this.orderService.addOrder(this.orderWrapper).subscribe();
-    console.log(this.newOrder);
+   // console.log(this.newOrder);
     console.log(this.orderWrapper);
-    console.log(this.map);
+  //  console.log(this.map);
+  }
+
+
+  mapToObj(strMap) {
+    const obj = Object.create(null);
+    for (const [k, v] of strMap) {
+      obj[k] = v;
+    }
+    return obj;
   }
 
   moreQuantity(product: Product) {
