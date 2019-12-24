@@ -1,13 +1,13 @@
 <!--work-->
-<ul *ngFor="let type of productTypes " >
-  <li (click)="getCategoryByType(type.productTypeEngName)">{{type.productTypeName}}
+<ul class = "list-group list-group-horizontal-sm" *ngFor="let type of productTypes " >
+  <li class = "list-group-item d-flex justify-content-between align-items-baseline"(click)="getCategoryByType(type.productTypeEngName)">{{type.productTypeName}}
     <div *ngIf="clickedType === type.productTypeEngName">
-      <ul *ngFor="let category of productCategories">
-        <li (click)="getProductsAndSubCategories(category.productCategoryEngName)">
+      <ul class="list-group" *ngFor="let category of productCategories">
+        <li class="list-group-item d-flex justify-content-between align-items-center" (click)="getProductsAndSubCategories(category.productCategoryEngName)">
           {{category.productCategoryName}}
           <div *ngIf="clickedCategory===category.productCategoryEngName">
-            <ul *ngFor="let subcategory of productSubcategories">
-             <li (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
+            <ul class="list-group" *ngFor="let subcategory of productSubcategories">
+             <li class="list-group-item d-flex justify-content-between align-items-center" (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
                {{subcategory.productSubcategoryName}}</li>
             </ul>
           </div>
@@ -52,13 +52,6 @@
   </div>
 
 </div>
-
-
-
-
-
-
-
 <!-- ---------------------------------------------------->
 
 
