@@ -1,24 +1,26 @@
 <!--work-->
-<ul class = "list-group list-group-horizontal-sm" *ngFor="let type of productTypes " >
-  <li class = "list-group-item d-flex justify-content-between align-items-baseline"(click)="getCategoryByType(type.productTypeEngName)">{{type.productTypeName}}
-    <div *ngIf="clickedType === type.productTypeEngName">
-      <ul class="list-group" *ngFor="let category of productCategories">
-        <li class="list-group-item d-flex justify-content-between align-items-center" (click)="getProductsAndSubCategories(category.productCategoryEngName)">
-          {{category.productCategoryName}}
-          <div *ngIf="clickedCategory===category.productCategoryEngName">
-            <ul class="list-group" *ngFor="let subcategory of productSubcategories">
-             <li class="list-group-item d-flex justify-content-between align-items-center" (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
-               {{subcategory.productSubcategoryName}}</li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </li>
-</ul>
+<div  class="dropdown">
+  <ul  (click)="onClickMenu(type)" class = "list-group list-group-horizontal-md dropdown-menu-left dropdown-header"  *ngFor="let type of productTypes ">
+    <li  id='test' class = "dropdown-toggle" (click)="getCategoryByType(type.productTypeEngName)">{{type.productTypeName}}
+      <div  *ngIf="clickedType === type.productTypeEngName">
+        <ul class="list-group dropdown-menu-left" *ngFor="let category of productCategories">
+          <li class="dropdown-toggle" (click)="getProductsAndSubCategories(category.productCategoryEngName)">
+            {{category.productCategoryName}}
+            <div  *ngIf="clickedCategory===category.productCategoryEngName">
+              <ul class="list-group" *ngFor="let subcategory of productSubcategories">
+                <li class=" dropdown-item" (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
+                  {{subcategory.productSubcategoryName}}</li>
+              </ul>
+            </div>
+        </ul>
+      </div>
+  </ul>
+</div>
+
+
+
 
 <div>
-
   <div *ngIf="clickedSubCategory">
     <div *ngFor="let product of products">
       <div>{{product.productId}}</div>

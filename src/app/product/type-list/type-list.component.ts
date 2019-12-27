@@ -4,10 +4,11 @@ import {ProductServiceService} from '../../../services/product/product-service.s
 import {ProductType} from '../../../model/product/product-type';
 import {ProductCategory} from '../../../model/product/product-category';
 import {ProductSubcategory} from '../../../model/product/product-subcategory';
-import {empty} from 'rxjs';
 import {CartService} from '../../../services/cart/cart.service';
 import {ProductSize} from '../../../model/product/product-size';
 
+// @ts-ignore
+// @ts-ignore
 @Component({
   selector: 'app-type-list',
   templateUrl: './type-list.component.html',
@@ -30,6 +31,8 @@ export class TypeListComponent implements OnInit {
 
     productPrice: number;
     productSize: string;
+
+    isClick = false;
 
   constructor(private productService: ProductServiceService, private cartService: CartService) { }
 
@@ -102,6 +105,9 @@ export class TypeListComponent implements OnInit {
     this.productPrice = size.productPrice;
   }
 
-
-
+  onClickMenu(event) {
+    let lolka = document.getElementById('test');
+    lolka.style.fontWeight = 'Bold';
+    console.log(event);
+  }
 }
