@@ -70,7 +70,7 @@ export class TypeListComponent implements OnInit {
     treeControl = new NestedTreeControl<CategoryNode>(node => node.children);
     dataSource = new MatTreeNestedDataSource<CategoryNode>();
   constructor(private productService: ProductServiceService, private cartService: CartService) {
-    this.dataSource.data = TREE_DATA; // тут тоже
+    this.dataSource.data = TREE_DATA; // тут тоже и тут
   }
 
   hasChild = (_: number, node: CategoryNode) => !!node.children && node.children.length > 0; // и тут
