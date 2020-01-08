@@ -6,6 +6,42 @@ import {ProductCategory} from '../../../model/product/product-category';
 import {ProductSubcategory} from '../../../model/product/product-subcategory';
 import {CartService} from '../../../services/cart/cart.service';
 import {ProductSize} from '../../../model/product/product-size';
+import {FlatTreeControl, NestedTreeControl} from '@angular/cdk/tree';
+import {MatTreeNestedDataSource} from '@angular/material/tree';
+
+
+interface CategoryNode { // тестовый интерфейс
+  name: string;
+  children?: CategoryNode[];
+}
+
+const TREE_DATA: CategoryNode[] = [ // дичь
+  {
+    name: 'Fruit',
+    children: [
+      {name: 'Apple'},
+      {name: 'Banana'},
+      {name: 'Fruit loops'},
+    ]
+  }, {
+    name: 'Vegetables',
+    children: [
+      {
+        name: 'Green',
+        children: [
+          {name: 'Broccoli'},
+          {name: 'Brussel sprouts'},
+        ]
+      }, {
+        name: 'Orange',
+        children: [
+          {name: 'Pumpkins'},
+          {name: 'Carrots'},
+        ]
+      },
+    ]
+  },
+];
 
 // @ts-ignore
 // @ts-ignore
@@ -23,18 +59,21 @@ export class TypeListComponent implements OnInit {
     categoryProducts: Array<Product>;
     data: any;
     product: Product;
-
     clickedType: string;
     clickedCategory: string;
     clickedSubCategory: string;
-
-
     productPrice: number;
     productSize: string;
-
     isClick = false;
+    showFiller: any;
+    // эти две штучки тупо ради теста
+    treeControl = new NestedTreeControl<CategoryNode>(node => node.children);
+    dataSource = new MatTreeNestedDataSource<CategoryNode>();
+  constructor(private productService: ProductServiceService, private cartService: CartService) {
+    this.dataSource.data = TREE_DATA; // тут тоже
+  }
 
-  constructor(private productService: ProductServiceService, private cartService: CartService) { }
+  hasChild = (_: number, node: CategoryNode) => !!node.children && node.children.length > 0; // и тут
 
   ngOnInit() {
 
@@ -106,8 +145,9 @@ export class TypeListComponent implements OnInit {
   }
 
   onClickMenu(event) {
-    let lolka = document.getElementById('test');
-    lolka.style.fontWeight = 'Bold';
+    const lalka = document.getElementById('test');
+    lalka.style.color = 'Red';
     console.log(event);
   }
 }
+

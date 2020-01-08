@@ -20,5 +20,4 @@ export class Product {
   orderProducts: OrderProduct[];
   productCategory: ProductCategory;
   productType: ProductType;
-
 }

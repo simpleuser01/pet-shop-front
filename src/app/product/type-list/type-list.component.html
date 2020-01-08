@@ -1,62 +1,158 @@
-<!--work-->
-<div  class="dropdown">
-  <ul  (click)="onClickMenu(type)" class = "list-group list-group-horizontal-md dropdown-menu-left dropdown-header"  *ngFor="let type of productTypes ">
-    <li  id='test' class = "dropdown-toggle" (click)="getCategoryByType(type.productTypeEngName)">{{type.productTypeName}}
-      <div  *ngIf="clickedType === type.productTypeEngName">
-        <ul class="list-group dropdown-menu-left" *ngFor="let category of productCategories">
-          <li class="dropdown-toggle" (click)="getProductsAndSubCategories(category.productCategoryEngName)">
-            {{category.productCategoryName}}
-            <div  *ngIf="clickedCategory===category.productCategoryEngName">
-              <ul class="list-group" *ngFor="let subcategory of productSubcategories">
-                <li class=" dropdown-item" (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
-                  {{subcategory.productSubcategoryName}}</li>
-              </ul>
-            </div>
-        </ul>
-      </div>
-  </ul>
+<div id="cart-login">
+<a id="login" class="btn badge-warning" href="">Войти</a>
+<a id="cart" class="btn btn-info" href="">Корзина</a>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li>
+        <a class="navbar-brand" mat-button (click)="drawer.toggle()">Товары по питомцу</a>
+      </li>
+      <li>
+        <a class="navbar-brand" href="#">Товары по бренду</a>
+      </li>
+      <li>
+        <a class="navbar-brand" href="#">Магазины</a>
+      </li>
+      <li>
+        <a class="navbar-brand" href="#">Акции</a>
+      </li>
+      <li>
+        <a class="navbar-brand" href="#">Услуги</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="../../../assets/one.jpg" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="../../../assets/two.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="../../../assets/three.jpg" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 
-
-
-
-<div>
-  <div *ngIf="clickedSubCategory">
+<!--menu-->
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <div  id="my_catalog_menu" class="dropdown row-cols-md-3">
+     <ul class = "list-group list-group-horizontal-md dropdown-menu-left dropdown-header" *ngFor="let type of productTypes ">
+        <li [ngStyle]="{'fontWeight':isClick === true ? 'Bold' : ''}" class = "dropdown-toggle" (click)="getCategoryByType(type.productTypeEngName); isClick = true">{{type.productTypeName}}
+          <div   *ngIf="clickedType === type.productTypeEngName">
+            <ul  class="list-group dropdown-menu-left" *ngFor="let category of productCategories">
+              <li  class="dropdown-toggle" (click)="getProductsAndSubCategories(category.productCategoryEngName)">
+                {{category.productCategoryName}}
+                <div  *ngIf="clickedCategory===category.productCategoryEngName">
+                  <ul class="list-group" *ngFor="let subcategory of productSubcategories">
+                    <li class=" dropdown-item" (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
+                      {{subcategory.productSubcategoryName}}</li>
+                  </ul>
+                </div>
+            </ul>
+          </div>
+      </ul>
+</div>
+</mat-drawer>
+</mat-drawer-container>
+<div >
+  <div class="catalog_items row-cols-md-3" *ngIf="clickedSubCategory">
     <div *ngFor="let product of products">
-      <div>{{product.productId}}</div>
+      <div >{{product.productId}}</div>
       <div>{{product.productName}}</div>
       <div>{{product.productDescription}}</div>
       <div>{{product.productStructure}}</div>
       <div>{{product.productMaker.productMakerName}}</div>
-      <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
+      <img src="http://localhost:8080/petshop.by/image/{{product.productId}}" alt="">
       <div *ngFor="let size of product.productSizes" (click)="getSizeAndPrice(size)">
         {{size.productSizeValue}}
         {{size.productPrice}}
       </div>
-
       <div>
         <button (click)="addProductToCartList(product)">add to cart list</button>
       </div>
     </div>
-
   </div>
-
-
 </div>
 
 
-<div *ngIf="clickedCategory">
-  <div *ngFor="let product of categoryProducts">
+<div id="lal1" *ngIf="clickedCategory">
+  <div  *ngFor="let product of categoryProducts">
     <div>{{product.productName}}</div>
-    <div>{{product.productImage}}</div>
+    <div class="catalog_items">{{product.productImage}}</div>
       <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
  <!--   <img src="{{data}}">-->
   </div>
 
 </div>
+
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+  <!-- This is the tree node template for leaf nodes -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+    <li class="mat-tree-node">
+      <!-- use a disabled button to provide padding for tree leaf -->
+      <button mat-icon-button disabled></button>
+      {{node.name}}
+    </li>
+  </mat-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <li>
+      <div class="mat-tree-node">
+        <button mat-icon-button matTreeNodeToggle
+                [attr.aria-label]="'toggle ' + node.name">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+        {{node.name}}
+      </div>
+      <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+        <ng-container matTreeNodeOutlet></ng-container>
+      </ul>
+    </li>
+  </mat-nested-tree-node>
+</mat-tree>
 <!-- ---------------------------------------------------->
-
-
+<!--<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+</mat-drawer-container>-->
 
 <!--<div *ngFor="let product of products">
   <div *ngFor="let category of product.productSubcategory.productCategories">
@@ -96,12 +192,7 @@
         </div>
       </ul>
     </div>
-
   </li>
 </ul>-->
-
-
-
-
 
 
