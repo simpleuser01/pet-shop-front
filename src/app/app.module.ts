@@ -16,6 +16,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatIconModule} from "@angular/material/icon";
+import { FooterComponent } from './templates/footer/footer.component';
+import { AdminFooterComponent } from './templates/admin-footer/admin-footer.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import {MatIconModule} from "@angular/material/icon";
     TypeListComponent,
     CartComponent,
     OrderComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    FooterComponent,
+    AdminFooterComponent
   ],
   imports: [
     BrowserModule,
