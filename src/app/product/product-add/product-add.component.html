@@ -72,8 +72,6 @@
     <option value="" disabled>Choose product maker</option>
     <option  *ngFor="let productType of productTypes" [ngValue]="productType" >{{productType.productTypeName}}</option>
   </select>
-
-
   <button (click)="onSubmit()">add product</button>
 </form>
 <app-admin-footer></app-admin-footer>
