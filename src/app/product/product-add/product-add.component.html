@@ -29,12 +29,12 @@
   </div>
 </nav>
 
-
+<div class="container">
 <form [formGroup]="addFormGroup">
   <div class="form-group">
     <div >
       <label for="ex1">Name</label>
-      <input name="productName" formControlName="productName" class="form-control-plaintext" id="ex1" type="text">
+      <input name="productName" formControlName="productName" class="form-control" id="ex1" type="text">
     </div>
 <!--    <div class="col-xs-3">
       <label for="ex2">col-xs-3</label>
@@ -45,6 +45,7 @@
       <input class="form-control" id="ex3" type="text">
     </div>-->
   </div>
+
 
   <!--name<input name="productName" formControlName="productName">-->
   engname<input name="productEngName" formControlName="productEngName">
@@ -74,4 +75,5 @@
   </select>
   <button (click)="onSubmit()">add product</button>
 </form>
+</div>
 <app-admin-footer></app-admin-footer>
