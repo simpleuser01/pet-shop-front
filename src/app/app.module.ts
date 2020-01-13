@@ -10,14 +10,15 @@ import {OrderComponent} from './order/order.component';
 import { ProductAddComponent } from './product/product-add/product-add.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from "@angular/material/button";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatSliderModule} from "@angular/material/slider";
-import {MatTreeModule} from "@angular/material/tree";
-import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
 import { FooterComponent } from './templates/footer/footer.component';
 import { AdminFooterComponent } from './templates/admin-footer/admin-footer.component';
+import { AdminHeaderComponent } from './templates/admin-header/admin-header.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AdminFooterComponent } from './templates/admin-footer/admin-footer.comp
     OrderComponent,
     ProductAddComponent,
     FooterComponent,
-    AdminFooterComponent
+    AdminFooterComponent,
+    AdminHeaderComponent
   ],
   imports: [
     BrowserModule,

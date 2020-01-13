@@ -14,15 +14,18 @@ import {ProductCategory} from '../../../model/product/product-category';
 })
 export class ProductAddComponent implements OnInit {
 
-
+  isShowAddProduct = false;
+  isShowAddType = false;
+  isShowAddCategory = false;
+  isShowAddSubCategory = false;
+  isShowAddProductMaker = false;
+  isShowDeleteProduct = false;
   addFormGroup: FormGroup;
   product = new Product();
   productMakers: ProductMaker[];
   productSubcategories: ProductSubcategory[];
   productTypes: ProductType[];
   productCategories: ProductCategory[];
-  // productMaker = new ProductMaker();
-
 
   constructor(private productService: ProductServiceService) { }
 
@@ -38,7 +41,7 @@ export class ProductAddComponent implements OnInit {
       productEngName: new FormControl(),
       productDescription: new FormControl(),
       productStructure: new FormControl(),
-       productMaker: new FormControl(),
+      productMaker: new FormControl(),
       productSubcategory: new FormControl(),
       productCategory: new FormControl(),
       productType: new FormControl()
@@ -63,4 +66,27 @@ export class ProductAddComponent implements OnInit {
     console.log(productMaker);
   }
 
+  AddProductInputShow() {
+    this.isShowAddProduct = !this.isShowAddProduct;
+  }
+
+  AddProductTypeInputShow() {
+    this.isShowAddType = !this.isShowAddType;
+  }
+
+  AddCategoryInputShow() {
+    this.isShowAddCategory = !this.isShowAddCategory;
+  }
+
+  AddSubCategoryInputShow() {
+    this.isShowAddSubCategory = !this.isShowAddSubCategory;
+  }
+
+  AddProductMaker() {
+    this.isShowAddProductMaker = !this.isShowAddProductMaker;
+  }
+
+  DeleteProduct() {
+    this.isShowDeleteProduct = !this.isShowDeleteProduct;
+  }
 }
