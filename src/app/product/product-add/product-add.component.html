@@ -1,85 +1,75 @@
-<app-admin-header></app-admin-header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Операция с товарами
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" data-toggle="modal" data-target=#addType><i class="fas fa-plus-square"></i> Добавить Тип</a>
+          <a class="dropdown-item" data-toggle="modal" data-target=#addCategory><i class="far fa-plus-square"></i> Добавить категорию</a>
+          <a class="dropdown-item" data-toggle="modal" data-target=#addSubCategory><i class="fas fa-plus-circle"></i> Добавить подкатегорию</a>
+          <a class="dropdown-item" data-toggle="modal" data-target=#addProductMaker><i class="fas fa-truck"></i> Добавить производителя</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="DeleteProduct()"><i class="fas fa-minus"></i> Удалить товар</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Добавить что-то там</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
 
+<h1 class="container">ТУТ КАРОЧИ МОЖНА ДОБАВЛЯЦ ТАВАР</h1>
 
 <div class="container">
 <form [formGroup]="addFormGroup">
-  <div class="form-group" [hidden]="!isShowAddProduct">
-    <div >
-      <label for="ex1">Name</label>
+  <div class="form-group">
+    <div>
+      <label for="ex1">Наименование товара</label>
       <input name="productName" formControlName="productName" class="form-control" id="ex1" type="text">
-      <label for="ex2">Product English Name</label>
+      <label for="ex2">Наименование на английском</label>
       <input name="productName" formControlName="productEngName" class="form-control" id="ex2" type="text">
-      <label for="ex3">Product Description</label>
+      <label for="ex3">Описание товара</label>
       <input name="productName" formControlName="productDescription" class="form-control" id="ex3" type="text">
-      <label for="ex4">Product Structure</label>
-      <input name="productName" formControlName="productStructure" class="form-control" id="ex4" type="text">
+      <label for="ex4">Структура</label>
+      <textarea name="productName" formControlName="productStructure" class="form-control" id="ex4" type="message"></textarea>
     </div>
-    <select class="custom-select" formControlName="productMaker" >
-      <option value="" disabled>Choose product maker</option>
+    <div>
+    <label for="prod">Изготовитель</label>
+    <select id="prod" class="custom-select" formControlName="productMaker" >
+      <option value="" disabled>Выберите производителя</option>
       <option  *ngFor="let productMaker of productMakers" [ngValue]="productMaker" >{{productMaker.productMakerName}}</option>
     </select>
-
-    <select class="custom-select" formControlName="productSubcategory" >
-      <option value="" disabled>Choose product maker</option>
+    <label for="subcat">Подкатегория</label>
+    <select class="custom-select" id="subcat" formControlName="productSubcategory" >
+      <option value="" disabled>Выберите подкатегорию</option>
       <option  *ngFor="let productSubcategory of productSubcategories" [ngValue]="productSubcategory" >{{productSubcategory.productSubcategoryName}}</option>
     </select>
-
-    <select class="custom-select" formControlName="productCategory">
-      <option value="" disabled>Choose product maker</option>
+    <label for="cat">Категория</label>
+    <select class="custom-select" id="cat" formControlName="productCategory">
+      <option value="" disabled>Выберите категорию</option>
       <option  *ngFor="let productCategory of productCategories" [ngValue]="productCategory" >{{productCategory.productCategoryName}}</option>
     </select>
-
-    <select class="custom-select" formControlName="productType">
-      <option value="" disabled>Choose product maker</option>
+      <label for="type">Тип</label>
+    <select class="custom-select" id="type" formControlName="productType">
+      <option value="" disabled>Выберите тип</option>
       <option  *ngFor="let productType of productTypes" [ngValue]="productType" >{{productType.productTypeName}}</option>
     </select>
-    <button class="btn btn-primary" (click)="onSubmit()">add product</button>
+
+
+    <button id="pashol_nahyi"class="btn btn-primary" (click)="onSubmit()">Добавить продукт</button>
+    </div>
   </div>
 </form>
-</div>
-
-<div class="container">
-  <form [formGroup]="addFormGroup">
-    <div class="form-group" [hidden]="!isShowAddType">
-      <label for="addType">Тип товара</label>
-      <input name="productTypeName" formControlName="productType" class="form-control" id="addType" type="text">
-
-      <button class="btn btn-primary" (click)="onSubmit()">Добавить тип</button>
-    </div>
-  </form>
-</div>
-
-<div class="container">
-  <form [formGroup]="addFormGroup">
-    <div class="form-group" [hidden]="!isShowAddCategory">
-      <label for="addCategory">Категория товара</label>
-      <input name="productCategoryName" formControlName="productCategory" class="form-control" id="addCategory" type="text">
-
-      <button class="btn btn-primary" (click)="onSubmit()">Добавить категорию</button>
-    </div>
-  </form>
-</div>
-
-<div class="container">
-  <form [formGroup]="addFormGroup">
-    <div class="form-group" [hidden]="!isShowAddSubCategory">
-      <label for="addSubCategory">Субкатегория товара</label>
-      <input name="productSubCategoryName" formControlName="productSubcategory" class="form-control" id="addSubCategory" type="text">
-
-      <button class="btn btn-primary" (click)="onSubmit()">Добавить подкатегорию</button>
-    </div>
-  </form>
-</div>
-
-<div class="container">
-  <form [formGroup]="addFormGroup">
-    <div class="form-group" [hidden]="!isShowAddProductMaker">
-      <label for="addProductMaker">Производитель товара</label>
-      <input name="productMakerName" formControlName="productMaker" class="form-control" id="addProductMaker" type="text">
-
-      <button class="btn btn-primary" (click)="onSubmit()">Добавить производителя</button>
-    </div>
-  </form>
 </div>
 
 <div class="container">
@@ -91,5 +81,103 @@
       <button class="btn btn-danger" (click)="onSubmit()">Удалить товар</button>
     </div>
   </form>
+</div>
+
+<div class="modal fade" id="addType" tabindex="-1" role="dialog" aria-labelledby="addTypeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addTypeModalLabel">Ну здарова пацаны! Чё как?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="addType-name" class="col-form-label">Тип продукта</label>
+            <input type="text" class="form-control" id="addType-name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary">Добавить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addSubCategory" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addSubCategoryModalLabel">Нью мессаге? Или ты саусаге?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="addSubCategory-name" class="col-form-label">Название подкатегории</label>
+            <input type="text" class="form-control" id="addSubCategory-name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary">Добавить</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCategoryModalLabel">Лучше бы ты у бати.....</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="addProductCategory-name" class="col-form-label">Категория</label>
+            <input type="text" class="form-control" id="addProductCategory-name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary">Добавить</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addProductMaker" tabindex="-1" role="dialog" aria-labelledby="addProductMakerModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProductMakerModalLabel">Ля какая цаца</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="productMaker-name" class="col-form-label">Производитель</label>
+            <input type="text" class="form-control" id="productMaker-name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary">Добавить</button>
+      </div>
+    </div>
+  </div>
 </div>
 <app-admin-footer></app-admin-footer>
