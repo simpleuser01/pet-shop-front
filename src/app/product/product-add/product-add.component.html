@@ -66,12 +66,11 @@
     </select>
 
 
-    <button id="pashol_nahyi"class="btn btn-primary" (click)="onSubmit()">Добавить продукт</button>
+    <button id="button-add" class="btn btn-primary" (click)="onSubmit()">Добавить продукт</button>
     </div>
   </div>
 </form>
 </div>
-
 <div class="container">
   <form [formGroup]="addFormGroup">
     <div class="form-group" [hidden]="!isShowDeleteProduct">

@@ -1,50 +1,54 @@
-  <div *ngFor="let product of products">
-    <div>{{product.productId}}</div>
-    <div>{{product.productName}}</div>
-    <div>{{product.productDescription}}</div>
-    <div>{{product.productStructure}}</div>
-    <div>{{product.productMaker.productMakerName}}</div>
-    <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
-    <div>{{product.productSize}}</div>
-    <div>{{product.productPrice}}</div>
-    <button (click)="deleteProductFromCartList(product)">delete</button>
-      <br>
-      <button (click)="moreQuantity(product)">+</button>
-      <br>
-      <div>{{map.get(product.productId)}}</div>
-      <br>
-      <button (click)="lessQuantity(product)">-</button>
-      <br>
+<h1>Добро пожаловац в корзину тварь</h1>
+
+  <!-- Title -->
+
+
+<div >
+<div *ngFor="let product of products" class="shopping-cart">
+  <div class="item">
+  <div class="buttons">
+    <span (click)="deleteProductFromCartList(product)" class="delete-btn"><i class="fas fa-times-circle"></i></span>
   </div>
+  <div class="image">
+    <img style="width: 150px; height: 200px" src="http://localhost:8080/petshop.by/image/{{product.productId}}">
+  </div>
+  <div class="description">
+    <div>{{product.productName}}</div>
+    <div>{{product.productSize}}</div>
+  </div>
+  <div class="quantity">
+    <button (click)="moreQuantity(product)" class="plus-btn" type="button" name="button">
+      <i class="fas fa-plus-circle"></i>
+    </button>
+    <input type="text" name="name" value="{{map.get(product.productId)}}">
+    <button (click)="lessQuantity(product)" class="minus-btn" type="button" name="button">
+      <i class="fas fa-minus-circle"></i>
+    </button>
+  </div>
+  <div class="total-price">{{product.productPrice}}</div>
+  </div>
+</div>
+</div>
 
-
- <form [formGroup]="order">
+<form [formGroup]="order">
     <input type="text" formControlName="orderDeliveryType" placeholder="delivery type">
 
     <input type="text" placeholder="description" formControlName="orderDescription">
 
     <div formGroupName="unregisterClient">
-
       <input type="text" placeholder="first name" formControlName="clientFirstName" >
       <input type="text" placeholder="email" formControlName="clientEmail">
       <input type="text" placeholder="tel" formControlName="clientTel" >
 
-
       <div formGroupName="clientAddress">
-
         <input type="text" placeholder="country" formControlName="addressCountry" >
         <input type="text" placeholder="city" formControlName="addressCity">
         <input type="text" placeholder="street" formControlName="addressStreet" >
         <input type="text" placeholder="home" formControlName="addressHome" >
         <input type="text" placeholder="flat" formControlName="addressFlat" >
-
-      </div>
     </div>
-
-
-
-  <!-- <button type="submit">press</button>-->
-  </form>
+  </div>
+</form>
 
    <!-- <form #myForm="ngForm" (ngSubmit)="addToOrders(myForm)">
       <input type="text"  placeholder="delivery type" name="orderDeliveryType" [(ngModel)]="order.orderDeliveryType" >
