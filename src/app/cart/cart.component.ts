@@ -23,6 +23,7 @@ export class CartComponent implements OnInit {
   quantity: number;
   unregisterClient: UnregisterClient;
   order: FormGroup;
+  isCourierDeliveryShown = false;
 //  unregisterClient: FormGroup;
 
   orderWrapper = new OrderWrapper();
@@ -36,10 +37,6 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.getCartList();
     this.quantity = 1;
-
-
-
-
     this.order = this.fb.group({
       orderDeliveryType : [''],
       orderDescription: [''],
@@ -106,7 +103,7 @@ export class CartComponent implements OnInit {
     }
     return obj;
   }
-
+  // TODO осуждаю название переменных)00
   moreQuantity(product: Product) {
    let q = this.map.get(product.productId);
    q++;
@@ -114,7 +111,7 @@ export class CartComponent implements OnInit {
    console.log(this.map);
   }
 
-
+  // TODO осуждаю название переменных х2)000)
   lessQuantity(product: Product) {
     let q = this.map.get(product.productId);
     q--;
@@ -123,6 +120,10 @@ export class CartComponent implements OnInit {
     }
     this.map.set(product.productId, q );
     console.log(this.map);
+  }
+
+  showCourierDeliver() {
+    this.isCourierDeliveryShown = !this.isCourierDeliveryShown;
   }
 }
 

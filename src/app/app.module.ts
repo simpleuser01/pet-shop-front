@@ -19,6 +19,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { FooterComponent } from './templates/footer/footer.component';
 import { AdminFooterComponent } from './templates/admin-footer/admin-footer.component';
 import { AdminHeaderComponent } from './templates/admin-header/admin-header.component';
+import { HeaderComponent } from './templates/header/header.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AdminHeaderComponent } from './templates/admin-header/admin-header.comp
     ProductAddComponent,
     FooterComponent,
     AdminFooterComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
