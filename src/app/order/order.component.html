@@ -1,59 +1,76 @@
-<div>
-  <div *ngFor="let order of orders" (click)="getProductsByOrderId(order.orderId)">
-    <div>{{order.orderId}}</div>
-    <div>{{order.orderDeliveryType}}</div>
-      <div>{{order.orderDescription}}</div>
-        <div>{{order.orderSumm}}</div>
-
-        <br>
-           <!-- <div *ngFor="let orderProduct of order.orderProducts">
-              <div>{{orderProduct.id.orderIdFk}} - {{orderProduct.id.productIdFk}} </div>
-
-              <div>{{orderProduct.productQuantity}}</div>
-              <div>{{orderProduct.productSumm}}</div>
-              <br>
-            </div>-->
-
-
-            <div *ngIf="id===order.orderId">
-              <div *ngFor="let product of order.orderProducts">
-
-
-                <div>{{product.product.productName}}</div>
-                <div>{{product.product.productDescription}}</div>
-                <div>{{product.product.productStructure}}</div>
-                <div>{{product.product.productMaker.productMakerName}}</div>
-                <img src="http://localhost:8080/petshop.by/image/{{product.product.productId}}">
-                <div>size {{product.productSize}}</div>
-                <div> quantity {{product.productQuantity}}</div>
-                <div> product price{{product.productSumm}}</div>
-
-                <br>
-
-          <!--      <div>{{product.productId}}</div>
-                <div>{{product.productName}}</div>
-                <div>{{product.productDescription}}</div>
-                <div>{{product.productStructure}}</div>
-                <div>{{product.productMaker.productMakerName}}</div>
-                <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">-->
-      <!--          <div>{{order.orderProducts.}}</div>-->
-                <!--  <div *ngFor="let productOrder of order.orderProducts">
-                          <div>{{productOrder.productQuantity}}</div>
-                          <div>{{productOrder.productSumm}}</div>
-                    </div>-->
-              </div>
-             <!-- <div *ngFor="let info of order.orderProducts">
-                <div>{{info.productQuantity}}</div>
-                <div>{{info.productSumm}}</div>
-                <div>{{info.productSize}}</div>
-              </div>-->
-
-
-
-
-            </div>
-
-              <button (click)="deleteOrder(order.orderId)">delete</button>
-            </div>
+<app-admin-header></app-admin-header>
+<div class="alou">
+<div *ngFor="let order of orders">
+  <div class="card"  style="width: 50rem;" (click)="getProductsByOrderId(order.orderId)">
+    <div class="card-body" >
+      <h5 class="card-title">{{order.orderDeliveryType}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{order.orderSumm}}</h6>
+      <p class="card-text">{{order.orderDescription}}</p>
+      <a href="#" class="btn btn-success card-link">Одобрить заказ</a>
+      <a href="#" class="btn btn-danger card-link">Удалить</a>
+    </div>
   </div>
+  <div class="col-8">
+    <div class="tab-content" id="test" *ngIf="id===order.orderId">
+      <div  *ngFor="let product of order.orderProducts">
+        <div>{{product.product.productName}}</div>
+        <div>{{product.product.productMaker.productMakerName}}</div>
+        <img src="http://localhost:8080/petshop.by/image/{{product.product.productId}}">
+        <div>size {{product.productSize}}</div>
+        <div> quantity {{product.productQuantity}}</div>
+        <div> product price{{product.productSumm}}</div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<app-admin-footer></app-admin-footer>
+<!--<div>
+  <div *ngFor="let order of orders" (click)="getProductsByOrderId(order.orderId)">
+    <div>{{order.orderDeliveryType}}</div>
+    <div>{{order.orderDescription}}</div>
+    <div>{{order.orderSumm}}</div>
+    <br>
+      <div *ngIf="id===order.orderId">
+        <div *ngFor="let product of order.orderProducts">
+          <div>{{product.product.productName}}</div>
+          <div>{{product.product.productMaker.productMakerName}}</div>
+          <img src="http://localhost:8080/petshop.by/image/{{product.product.productId}}">
+          <div>size {{product.productSize}}</div>
+          <div> quantity {{product.productQuantity}}</div>
+          <div> product price{{product.productSumm}}</div>
+          <br>
+        </div>
+      </div>
+      <button (click)="deleteOrder(order.orderId)">delete</button>
+  </div>
+</div>-->
 
+
+<!--Убираю это гавно отсюда!-->
+<!-- <div *ngFor="let orderProduct of order.orderProducts">
+   <div>{{orderProduct.id.orderIdFk}} - {{orderProduct.id.productIdFk}} </div>
+
+   <div>{{orderProduct.productQuantity}}</div>
+   <div>{{orderProduct.productSumm}}</div>
+   <br>
+ </div>-->
+
+<!-- <div *ngFor="let info of order.orderProducts">
+   <div>{{info.productQuantity}}</div>
+   <div>{{info.productSumm}}</div>
+   <div>{{info.productSize}}</div>
+ </div>-->
+
+<!--      <div>{{product.productId}}</div>
+      <div>{{product.productName}}</div>
+      <div>{{product.productDescription}}</div>
+      <div>{{product.productStructure}}</div>
+      <div>{{product.productMaker.productMakerName}}</div>
+      <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">-->
+<!--          <div>{{order.orderProducts.}}</div>-->
+<!--  <div *ngFor="let productOrder of order.orderProducts">
+          <div>{{productOrder.productQuantity}}</div>
+          <div>{{productOrder.productSumm}}</div>
+    </div>-->
