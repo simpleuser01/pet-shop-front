@@ -43,8 +43,7 @@ const TREE_DATA: CategoryNode[] = [ // дичь
   },
 ];
 
-// @ts-ignore
-// @ts-ignore
+
 @Component({
   selector: 'app-type-list',
   templateUrl: './type-list.component.html',

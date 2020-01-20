@@ -80,6 +80,10 @@ export class ProductServiceService {
     return  this.httpClient.get<any[]>(this.url + '/subCategories');
   }
 
+
+  getAllProductsForMainPage(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.url + '/');
+  }
 }
 
 
