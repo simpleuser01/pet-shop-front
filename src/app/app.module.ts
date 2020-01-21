@@ -20,7 +20,7 @@ import { FooterComponent } from './templates/footer/footer.component';
 import { AdminFooterComponent } from './templates/admin-footer/admin-footer.component';
 import { AdminHeaderComponent } from './templates/admin-header/admin-header.component';
 import { HeaderComponent } from './templates/header/header.component';
-
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { HeaderComponent } from './templates/header/header.component';
     FooterComponent,
     AdminFooterComponent,
     AdminHeaderComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,149 @@
 <app-header></app-header>
-Добро пожаловать на этот сайт.
-<div *ngFor="let product of popularProducts">
-  {{product.productName}}
-  согласен узнал
+<br>
+<div class="container">
+  <h1>Популярные товары</h1>
 </div>
+<br>
+<div class="container" *ngFor="let product of popularProducts; let i = index; let even = even;">
+  <div *ngIf="even && i < 3">
+    <div class="card-deck">
+      <div class="card" style="width: 30rem">
+        <img src="http://localhost:8080/petshop.by/image/{{popularProducts[i].productId}}" class="card-img-top" alt=ALO>
+        <div class="card-body">
+          <h5 class="card-title">{{popularProducts[i].productName}}</h5>
+        </div>
+      </div>
+      <div class="card" style="width: 30rem">
+        <img src="http://localhost:8080/petshop.by/image/{{popularProducts[i+1].productId}}" class="card-img-top"
+             alt=ALO>
+        <div class="card-body">
+          <h5 class="card-title">{{popularProducts[i + 1].productName}}</h5>
+        </div>
+      </div>
+      <div class="card" style="width: 30rem">
+        <img src="http://localhost:8080/petshop.by/image/{{popularProducts[i+2].productId}}" class="card-img-top"
+             alt=ALO>
+        <div class="card-body">
+          <h5 class="card-title">{{popularProducts[i + 2].productName}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="about">
+  <div class="container">
+    <header class="section-header">
+      <h3>About Us</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+    </header>
+    <div class="row about-cols">
+      <div class="col-md-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+        <div class="about-col">
+          <div class="img">
+            <img src="../../assets/about-mission.jpg" alt="" class="img-fluid">
+            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+          </div>
+          <h2 class="title">Our Mission</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut
+            enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s"
+           style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+        <div class="about-col">
+          <div class="img">
+            <img src="../../assets/about-plan.jpg" alt="" class="img-fluid">
+            <div class="icon"><i class="ion-ios-list-outline"></i></div>
+          </div>
+          <h2 class="title">Our Plan</h2>
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam,
+            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s"
+           style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+        <div class="about-col">
+          <div class="img">
+            <img src="../../assets/about-vision.jpg" alt="" class="img-fluid">
+            <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+          </div>
+          <h2 class="title">Our Vision</h2>
+          <p>
+            Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione
+            voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="about" id="news">
+  <div class="container">
+    <header class="section-header">
+      <h3>About Us</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+    </header>
+
+    <div class="row about-cols">
+
+      <div class="col-md-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+        <div class="about-col">
+          <div class="img">
+            <img src="../../assets/news1.jpg" alt="" class="img-fluid">
+            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+          </div>
+          <h2 class="title">Our Mission</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut
+            enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s"
+           style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+        <div class="about-col">
+          <div class="img">
+            <img src="../../assets/news2.jpg" alt="" class="img-fluid">
+            <div class="icon"><i class="ion-ios-list-outline"></i></div>
+          </div>
+          <h2 class="title">Our Plan</h2>
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam,
+            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s"
+           style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+        <div class="about-col">
+          <div class="img">
+            <img src="../../assets/news3.jpg" alt="" class="img-fluid">
+            <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+          </div>
+          <h2 class="title">Our Vision</h2>
+          <p>
+            Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione
+            voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<br>
 <app-footer></app-footer>
 
 
