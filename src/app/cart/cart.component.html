@@ -1,110 +1,97 @@
 <app-header></app-header>
-
-<div >
-<div *ngFor="let product of products" class="shopping-cart">
-  <div class="item">
-  <div class="buttons">
-    <span (click)="deleteProductFromCartList(product)" class="delete-btn"><i class="fas fa-times-circle"></i></span>
-  </div>
-  <div class="image">
-    <img style="width: 150px; height: 200px" src="http://localhost:8080/petshop.by/image/{{product.productId}}">
-  </div>
-  <div class="description">
-    <div>{{product.productName}}</div>
-    <div>{{product.productSize}}</div>
-  </div>
-  <div class="quantity">
-    <button (click)="moreQuantity(product)" class="plus-butn" type="button" name="button">
-      <i class="fas fa-plus-circle"></i>
-    </button>
-    <input type="text" name="name" value="{{map.get(product.productId)}}">
-    <button (click)="lessQuantity(product)" class="minus-butn" type="button" name="button">
-      <i class="fas fa-minus-circle"></i>
-    </button>
-  </div>
-  <div class="total-price">{{product.productPrice}}</div>
-  </div>
-</div>
-</div>
-<!--TODO Ну дарова. Чел, там в радиобаттоне надо коичо допилить для тс-ки. Ну ты понял.-->
-<form [formGroup]="order" class="container">
-    <div  class="custom-control custom-radio">
-      <input [checked]="!isCourierDeliveryShown" [value]="false" formControlName="orderDeliveryType" type="radio" id="customRadio1" name="orderDeliveryType" class="custom-control-input">
-      <label class="custom-control-label" for="customRadio1">Доставка курьером</label>
-    </div>
-    <div class="custom-control custom-radio" >
-      <input [checked]="isCourierDeliveryShown" [value]="true"  type="radio" id="customRadio2" name="orderDeliveryType" class="custom-control-input">
-      <label class="custom-control-label" for="customRadio2" (click)="showCourierDeliver()">Доставка самовывозом</label>
-    </div>
-    <div formGroupName="unregisterClient">
-      <div class="needs-validation">
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <label for="validationCustom01">Имя</label>
-            <input formControlName="clientFirstName" type="text" class="form-control" id="validationCustom01" value="" required>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="validationCustomUsername">Электронная почта</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-              </div>
-              <input formControlName="clientEmail" type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="validationCustom02">Номер телефона</label>
-            <input formControlName="clientTel" type="telephone" class="form-control" id="validationCustom02" value="" required>
-          </div>
-        </div>
-        <div class="form-row" formGroupName="clientAddress" *ngIf="isCourierDeliveryShown">
-          <div class="col-md-6 mb-3">
-            <label for="validationCustom03">Страна</label>
-            <input type="text" formControlName="addressCountry" class="form-control" id="validationCustom03" required>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="validationCustom04">Город</label>
-            <input type="text" formControlName="addressCity" class="form-control" id="validationCustom04" required>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationCustom05">Улица</label>
-            <input type="text" formControlName="addressStreet" class="form-control" id="validationCustom05" required>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationCustom06">Дом</label>
-            <input type="text" formControlName="addressHome" class="form-control" id="validationCustom06" required>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationCustom07">Квартира</label>
-            <input type="text" formControlName="addressFlat" class="form-control" id="validationCustom07" required>
-          </div>
-        </div>
-        <button id="button-add" class="btn btn-warning" (click)="addToOrders()" type="submit">Добавить продукт</button>
+  <div *ngFor="let product of products" class="shopping-cart">
+    <div class="item" >
+      <div class="buttons">
+        <span (click)="deleteProductFromCartList(product)" class="delete-btn"><i class="fas fa-times-circle"></i></span>
       </div>
-      <!--<input type="text" placeholder="first name" formControlName="clientFirstName" >
-      <input type="text" placeholder="email" formControlName="clientEmail">
-      <input type="text" placeholder="tel" formControlName="clientTel" >
+      <div class="image">
+        <img style="width: 150px; height: 200px" src="http://localhost:8080/petshop.by/image/{{product.productId}}">
+      </div>
+      <div class="description">
+        <div>{{product.productName}}</div>
+        <div>{{product.productSize}}</div>
+      </div>
+      <div class="quantity">
+        <button (click)="moreQuantity(product)" class="plus-butn" type="button" name="button">
+          <i class="fas fa-plus-circle"></i>
+        </button>
+        <input type="text" value="{{map.get(product.productId)}}">
+        <button (click)="lessQuantity(product)" class="minus-butn" type="button" name="button">
+          <i class="fas fa-minus-circle"></i>
+        </button>
+      </div>
+      <div class="total-price">{{product.productPrice}}</div>
+    </div>
+  </div>
+<div *ngIf="products.length == 0;">
+  {{showDeliveryForm(isDeliveryFormShown)}}
+  <img style="margin-left: 250px" src="../../assets/empty-cart.jpg" alt="">
+</div>
 
-        <div formGroupName="clientAddress">
-          <input type="text" placeholder="country" formControlName="addressCountry" >
-          <input type="text" placeholder="city" formControlName="addressCity">
-          <input type="text" placeholder="street" formControlName="addressStreet" >
-          <input type="text" placeholder="home" formControlName="addressHome" >
-          <input type="text" placeholder="flat" formControlName="addressFlat" >
-        </div>-->
+<form [formGroup]="order" class="container" [hidden]="isDeliveryFormShown">
+  <div class="custom-control custom-radio">
+    <input [checked]="!isCourierDeliveryShown" [value]="false" value="курьером" formControlName="orderDeliveryType" type="radio"
+           id="customRadio1" name="orderDeliveryType" class="custom-control-input">
+    <label class="custom-control-label" for="customRadio1" (click)="showCourierDeliver(false)">Доставка курьером</label>
+  </div>
+  <div class="custom-control custom-radio">
+    <input [checked]="isCourierDeliveryShown" [value]="true" value="самовывоз" type="radio" id="customRadio2" name="orderDeliveryType"
+           class="custom-control-input">
+    <label class="custom-control-label" for="customRadio2" (click)="showCourierDeliver(true)">Доставка
+      самовывозом</label>
+  </div>
+  <div formGroupName="unregisterClient">
+    <div class="needs-validation">
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom01">Имя</label>
+          <input formControlName="clientFirstName" type="text" class="form-control" id="validationCustom01" value=""
+                 required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationCustomUsername">Электронная почта</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend">@</span>
+            </div>
+            <input formControlName="clientEmail" type="email" class="form-control" id="validationCustomUsername"
+                   aria-describedby="inputGroupPrepend" required>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom02">Номер телефона</label>
+          <input formControlName="clientTel" type="telephone" class="form-control" id="validationCustom02" value=""
+                 required>
+        </div>
+      </div>
+      <div class="form-row" formGroupName="clientAddress" *ngIf="isCourierDeliveryShown">
+        <div class="col-md-6 mb-3">
+          <label for="validationCustom03">Страна</label>
+          <input type="text" formControlName="addressCountry" class="form-control" id="validationCustom03" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationCustom04">Город</label>
+          <input type="text" formControlName="addressCity" class="form-control" id="validationCustom04" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom05">Улица</label>
+          <input type="text" formControlName="addressStreet" class="form-control" id="validationCustom05" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom06">Дом</label>
+          <input type="text" formControlName="addressHome" class="form-control" id="validationCustom06" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationCustom07">Квартира</label>
+          <input type="text" formControlName="addressFlat" class="form-control" id="validationCustom07" required>
+        </div>
+      </div>
+      <button id="button-add" class="btn btn-warning" (click)="addToOrders()">Добавить продукт</button>
+    </div>
   </div>
   <br>
-
 </form>
 
-   <!-- <form #myForm="ngForm" (ngSubmit)="addToOrders(myForm)">
-      <input type="text"  placeholder="delivery type" name="orderDeliveryType" [(ngModel)]="order.orderDeliveryType" >
-      <input type="text" placeholder="description" name="orderDescription" [(ngModel)]="order.orderDescription" >
-
-      <input type="text" placeholder="first name" name="clientFirstName" [(ngModel)]="order.unregisterClient.clientFirstName" >
-      <input type="text" placeholder="email" [(ngModel)]="order.unregisterClient.clientEmail">
-      <input type="text" placeholder="tel"  [(ngModel)]="order.unregisterClient.clientTel">
-    </form>-->
 <app-footer></app-footer>
 
 

@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
   unregisterClient: UnregisterClient;
   order: FormGroup;
   isCourierDeliveryShown = false;
+  isDeliveryFormShown = false;
 //  unregisterClient: FormGroup;
 
   orderWrapper = new OrderWrapper();
@@ -39,7 +40,7 @@ export class CartComponent implements OnInit {
     this.quantity = 1;
     this.order = this.fb.group({
       orderDeliveryType : [''],
-      orderDescription: [''],
+      orderDescription: ['выавыа'],
       unregisterClient: this.fb.group({
         clientFirstName: [''],
         clientEmail: [''],
@@ -122,8 +123,30 @@ export class CartComponent implements OnInit {
     console.log(this.map);
   }
 
-  showCourierDeliver() {
-    this.isCourierDeliveryShown = !this.isCourierDeliveryShown;
+  showCourierDeliver(isShown: boolean) {
+    switch (isShown) {
+      case true: {
+        this.isCourierDeliveryShown = true;
+        break;
+      }
+      case false: {
+        this.isCourierDeliveryShown = false;
+        break;
+      }
+    }
+  }
+
+  showDeliveryForm(isCardEmpty: boolean) {
+    switch (isCardEmpty) {
+      case true: {
+        this.isDeliveryFormShown = false;
+        break;
+      }
+      case false: {
+        this.isDeliveryFormShown = true;
+        break;
+      }
+    }
   }
 }
 

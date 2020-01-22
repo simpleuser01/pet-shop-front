@@ -7,7 +7,7 @@
       <h6 class="card-subtitle mb-2 text-muted">{{order.orderSumm}}</h6>
       <p class="card-text">{{order.orderDescription}}</p>
       <a href="#" class="btn btn-success card-link">Одобрить заказ</a>
-      <a href="#" class="btn btn-danger card-link">Удалить</a>
+      <a (click)="deleteOrder(order.orderId)" class="btn btn-danger card-link">Удалить</a>
     </div>
   </div>
   <div class="col-8">
