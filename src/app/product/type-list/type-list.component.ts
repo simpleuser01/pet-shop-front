@@ -79,6 +79,9 @@ export class TypeListComponent implements OnInit {
     this.productService.getAllTypes()
       .subscribe(data => this.productTypes = data);
 
+
+    this.productService.getAllProductsForMainPage().subscribe(data => this.products = data);
+
    /* this.productService.getProductByType(this.clickedType)
       .subscribe(data => this.products = data);*/
   }

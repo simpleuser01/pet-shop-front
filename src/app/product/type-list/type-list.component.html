@@ -1,33 +1,59 @@
 <app-header></app-header>
 <h1>Каталог товаров</h1>
-<!--menuфывфыв-->
-
-
-  <div  id="my_catalog_menu" class="dropdown row-cols-md-3">
-
-     <ul class = "list-group list-group-horizontal-md dropdown-menu-left dropdown-header" *ngFor="let type of productTypes ">
-        <li [ngStyle]="{'fontWeight':isClick === true ? 'Bold' : ''}" class = "dropdown-toggle" (click)="getCategoryByType(type.productTypeEngName); isClick = true">{{type.productTypeName}}
-          <div   *ngIf="clickedType === type.productTypeEngName">
-            <ul  class="list-group dropdown-menu-left" *ngFor="let category of productCategories">
-              <li  class="dropdown-toggle" (click)="getProductsAndSubCategories(category.productCategoryEngName)">
-                {{category.productCategoryName}}
-                <div  *ngIf="clickedCategory===category.productCategoryEngName">
-                  <ul class="list-group" *ngFor="let subcategory of productSubcategories">
-                    <li class=" dropdown-item" (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
-                      {{subcategory.productSubcategoryName}}</li>
-                  </ul>
-                </div>
-            </ul>
+<!--menu-->
+<div class="container">
+  <aside id="my_catalog_menu" class="dropdown row-cols-md-3">
+    <ul id="product-type" class="list-group list-group-horizontal-md dropdown-menu-left dropdown-header"
+        *ngFor="let type of productTypes ">
+      <li class="dropdown-toggle"
+          (click)="getCategoryByType(type.productTypeEngName); isClick = true">{{type.productTypeName}}
+        <div *ngIf="clickedType === type.productTypeEngName">
+          <ul id="product-category" class="list-group dropdown-menu-left" *ngFor="let category of productCategories">
+            <li class="dropdown-toggle" (click)="getProductsAndSubCategories(category.productCategoryEngName)">
+              {{category.productCategoryName}}
+              <div *ngIf="clickedCategory===category.productCategoryEngName">
+                <ul class="list-group" *ngFor="let subcategory of productSubcategories">
+                  <li class=" dropdown-item" (click)="getProductBySubcategory(subcategory.productSubcategoryEngName)">
+                    {{subcategory.productSubcategoryName}}</li>
+                </ul>
+              </div>
+          </ul>
+        </div>
+    </ul>
+  </aside>
+  <main id="products">
+    <div *ngFor="let product of products; let i = index; let even = even;">
+      <div *ngIf="even && i < 3">
+        <div class="card-deck">
+          <div class="card" style="width: 30rem">
+            <img src="http://localhost:8080/petshop.by/image/{{products[i].productId}}" class="card-img-top" alt=ALO>
+            <div class="card-body">
+              <h5 class="card-title">{{products[i].productName}}</h5>
+            </div>
           </div>
-      </ul>
+          <div class="card" style="width: 30rem">
+            <img src="http://localhost:8080/petshop.by/image/{{products[i+1].productId}}" class="card-img-top"
+                 alt=ALO>
+            <div class="card-body">
+              <h5 class="card-title">{{products[i + 1].productName}}</h5>
+            </div>
+          </div>
+          <div class="card" style="width: 30rem">
+            <img src="http://localhost:8080/petshop.by/image/{{products[i+2].productId}}" class="card-img-top"
+                 alt=ALO>
+            <div class="card-body">
+              <h5 class="card-title">{{products[i + 2].productName}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
-<div style="margin-left: 200px;">
-  Тут типа чёт есть
-</div>
-<div >
+<div>
   <div class="catalog_items row-cols-md-3" *ngIf="clickedSubCategory">
     <div *ngFor="let product of products">
-      <div >{{product.productId}}</div>
+      <div>{{product.productId}}</div>
       <div>{{product.productName}}</div>
       <div>{{product.productDescription}}</div>
       <div>{{product.productStructure}}</div>
@@ -43,100 +69,15 @@
     </div>
   </div>
 </div>
-
 <div id="lal1" *ngIf="clickedCategory">
-  <div  *ngFor="let product of categoryProducts">
+  <div *ngFor="let product of categoryProducts">
     <div>{{product.productName}}</div>
     <div class="catalog_items">{{product.productImage}}</div>
-      <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
- <!--   <img src="{{data}}">-->
+    <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
+    <!--   <img src="{{data}}">-->
   </div>
 </div>
-
-
 <app-footer></app-footer>
-<!--<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
-  &lt;!&ndash; This is the tree node template for leaf nodes &ndash;&gt;
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-    <li class="mat-tree-node">
-      &lt;!&ndash; use a disabled button to provide padding for tree leaf &ndash;&gt;
-      <button mat-icon-button disabled></button>
-      {{node.name}}
-    </li>
-  </mat-tree-node>
-  &lt;!&ndash; This is the tree node template for expandable nodes &ndash;&gt;
-  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-    <li>
-      <div class="mat-tree-node">
-        <button mat-icon-button matTreeNodeToggle
-                [attr.aria-label]="'toggle ' + node.name">
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-          </mat-icon>
-        </button>
-        {{node.name}}
-      </div>
-      <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-        <ng-container matTreeNodeOutlet></ng-container>
-      </ul>
-    </li>
-  </mat-nested-tree-node>
-</mat-tree>-->
-<!-- ---------------------------------------------------->
-<!--<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-  </mat-drawer>
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
-</mat-drawer-container>-->
 
-<!--<div *ngFor="let product of products">
-  <div *ngFor="let category of product.productSubcategory.productCategories">
-      <ul *ngFor="let type of category.productTypes">
-          <li>{{type.productTypeName}}</li>
-      </ul>
-  </div>
-
-</div>-->
-<!--<div *ngFor="let product of products">
-  <ul *ngFor="let type of product.productSubcategory.productCategories.productTypes.productTypeName">
-    <li>{{type}}</li>
-  </ul>
-</div>-->
-
-
-<!--<ul *ngFor="let type of productTypes " >
-  <li (click)="getCategoryByType(type.productTypeEngName)" >{{type.productTypeName}}
-    <div *ngFor="let product of products">
-      <ul *ngFor="let category of product.productSubcategory.productCategories">
-        <div *ngIf="clickedType === type.productTypeEngName">
-        <ul>
-          {{category.productCategoryName}}
-
-&lt;!&ndash;          <ul *ngFor="let subcategory of product.productSubcategory">
-            <li>{{subcategory[0]}}</li>
-          </ul>&ndash;&gt;
-&lt;!&ndash;          <ul>
-              {{product.productSubcategory.productSubcategoryName}}
-          </ul>&ndash;&gt;
-&lt;!&ndash;          <ul *ngFor="let kek of product.productSubcategory">
-            <ul *ngFor="let lal of kek">
-              <li>{{lal}}</li>
-            </ul>
-          </ul>
-        </ul>&ndash;&gt;
-        </div>
-      </ul>
-    </div>
-  </li>
-</ul>-->
 
 

@@ -1,10 +1,31 @@
 #my_catalog_menu{
-
+  display: inline-block;
+  width: 240px;
+  margin-top: 2px;
+  padding-right: 45px;
+  vertical-align: top;
+  font-family: Roboto, serif !important;
+  font-size: 17px;
+  font-weight: 400;
+  color: #637280;
 }
-.catalog_items{
+#product-type {
+  font-size: 17px;
+}
+#product-category {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+#products {
+ display: inline-block;
+  width: -webkit-calc(100% - 230px);
+  width: calc(100% - 250px);
+  margin-top: 10px;
+  vertical-align: top;
+}
+.catalog_items {
   color: aquamarine;
 }
-
 #cart-login{
   margin-left: 87vw;
   display: inline-block;
@@ -15,7 +36,6 @@
 .megamenu {
   position: static;
 }
-
 .megamenu .dropdown-menu {
   background: none;
   border: none;
@@ -25,6 +45,10 @@
   color: black;
 }
 .nav-link {
-
   padding: 0;
+}
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
 }
