@@ -136,17 +136,17 @@
             <div class="modal-body mb-1">
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput10">Электронная почта</label>
+                <input type="text" id="modalLRInput10" class="form-control form-control-sm validate" [(ngModel)]="login.username">
+                <label data-error="wrong" data-success="right" for="modalLRInput10">Имя пользователя</label>
               </div>
 
               <div class="md-form form-sm mb-4">
                 <i class="fas fa-lock prefix"></i>
-                <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" [(ngModel)]="login.password" >
                 <label data-error="wrong" data-success="right" for="modalLRInput11">Пароль</label>
               </div>
               <div class="text-center mt-2">
-                <button class="btn btn-info">Войти <i class="fas fa-sign-in ml-1"></i></button>
+                <button class="btn btn-info" (click)="toLogin()">Войти <i class="fas fa-sign-in ml-1"></i></button>
               </div>
             </div>
             <!--Footer-->
@@ -164,42 +164,45 @@
             <div class="modal-body">
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="modalLRInput1" class="form-control form-control-sm validate">
+                <input type="text" id="modalLRInput1" class="form-control form-control-sm validate" [(ngModel)]="registerUser.firstName">
                 <label data-error="wrong" data-success="right" for="modalLRInput1">Имя</label>
               </div>
 
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="modalLRInput2" class="form-control form-control-sm validate">
+                <input type="text" id="modalLRInput2" class="form-control form-control-sm validate" [(ngModel)]="registerUser.lastName">
                 <label data-error="wrong" data-success="right" for="modalLRInput2">Фамилия</label>
               </div>
 
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="modalLRInput3" class="form-control form-control-sm validate">
+                <input type="email" id="modalLRInput3" class="form-control form-control-sm validate" [(ngModel)]="registerUser.email">
                 <label data-error="wrong" data-success="right" for="modalLRInput3">Электронная почта</label>
               </div>
 
               <div class="md-form form-sm mb-5">
-                <i class="fas fa-lock prefix"></i>
-                <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput13">Пароль</label>
-              </div>
-
-              <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="telephone" id="modalLRInput12" class="form-control form-control-sm validate">
+                <input type="telephone" id="modalLRInput12" class="form-control form-control-sm validate" [(ngModel)]="registerUser.tel">
                 <label data-error="wrong" data-success="right" for="modalLRInput12">Телефон</label>
               </div>
 
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="telephone" id="modalLRInput5" class="form-control form-control-sm validate">
+                <input type="text" id="modalLRInput5" class="form-control form-control-sm validate" [(ngModel)]="registerUser.userName">
                 <label data-error="wrong" data-success="right" for="modalLRInput5">Имя пользователя</label>
               </div>
 
+
+              <div class="md-form form-sm mb-5">
+                <i class="fas fa-lock prefix"></i>
+                <input type="password" id="modalLRInput13" class="form-control form-control-sm validate" [(ngModel)]="registerUser.password">
+                <label data-error="wrong" data-success="right" for="modalLRInput13">Пароль</label>
+              </div>
+
+
+
               <div class="text-center form-sm mt-2">
-                <button class="btn btn-info">Регистрация<i class="fas fa-sign-in ml-1"></i></button>
+                <button class="btn btn-info" (click)="register()">Регистрация<i class="fas fa-sign-in ml-1"></i></button>
               </div>
 
             </div>
