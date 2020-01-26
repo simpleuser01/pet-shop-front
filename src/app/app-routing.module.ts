@@ -6,6 +6,7 @@ import {TypeListComponent} from './product/type-list/type-list.component';
 import {OrderComponent} from './order/order.component';
 import {ProductAddComponent} from './product/product-add/product-add.component';
 import {MainPageComponent} from './main-page/main-page.component';
+import {UserComponent} from "./user/user.component";
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'catalog', component: TypeListComponent},
   {path: 'admin/orders', component: OrderComponent},
   {path: 'admin/add', component: ProductAddComponent},
-  {path: 'main', component: MainPageComponent}
+  {path: 'main', component: MainPageComponent},
+  {path: 'user/:userName', component: UserComponent}
 ];
 
 @NgModule({

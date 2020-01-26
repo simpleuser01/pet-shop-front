@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {Login} from '../../../model/login/login';
 import {AuthService} from '../../../services/security/auth.service';
 import {element} from 'protractor';
@@ -11,6 +11,8 @@ import {TokenStorageService} from '../../../services/security/token-storage.serv
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+
   registerUser = new RegisterUser();
   login = new Login();
   isSuccessful = false;
@@ -25,9 +27,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser();
-      console.log(this.roles);
-    }
+      this.roles = this.tokenStorage.getAuthorities();
+         }
   }
 
   register() {
@@ -47,10 +48,11 @@ export class HeaderComponent implements OnInit {
         console.log(data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
+        this.tokenStorage.saveAuthorities(data.authorities);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
+        this.roles = this.tokenStorage.getAuthorities();
         this.reloadPage();
       },
       err => {

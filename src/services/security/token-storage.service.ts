@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
-const  AUTHORITIES_KEY = 'auth-authorities';
+const TOKEN_KEY = 'AuthToken';
+const USER_KEY = 'AuthUsername';
+const  AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root'
@@ -34,20 +34,21 @@ export class TokenStorageService {
   }
 
 
-  // public saveAuthorities(authorities: string[]) {
-  //   window.sessionStorage.removeItem(AUTHORITIES_KEY);
-  //   window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
-  // }
-  //
-  // public getAuthorities(): string[] {
-  //   this.roles = [];
-  //
-  //   if (sessionStorage.getItem(TOKEN_KEY)) {
-  //     JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
-  //       this.roles.push(authority.authority);
-  //     });
-  //   }
-  //
-  //   return this.roles;
-  // }
+   public saveAuthorities(authorities: string[]) {
+     window.sessionStorage.removeItem(AUTHORITIES_KEY);
+     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+   }
+
+   public getAuthorities(): string[] {
+   this.roles = [];
+
+     if (sessionStorage.getItem(TOKEN_KEY)) {
+
+         JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
+           this.roles.push(authority.authority);
+       });
+     }
+
+    return this.roles;
+}
 }

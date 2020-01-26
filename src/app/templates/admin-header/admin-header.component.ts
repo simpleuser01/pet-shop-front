@@ -15,10 +15,10 @@ export class AdminHeaderComponent implements OnInit {
   constructor(private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    if (this.tokenStorage.getToken()) {
+   /* if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser();
+      this.roles = this.tokenStorage.getUser().roles;
       console.log(this.roles);
-    }
+    }*/
   }
 }

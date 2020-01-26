@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Login} from '../../model/login/login';
 import {RegisterUser} from '../../model/client/RegisterUser/register-user';
+import {Jwtresponse} from "../../model/jwtresponse";
 
 const AUTH_API = 'http://localhost:8080/petshop.by/auth/';
 const httpOptions = {
@@ -16,8 +17,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: Login): Observable<any> {
-    return this.http.post(AUTH_API + 'signin', {
+  login(credentials: Login): Observable<Jwtresponse> {
+    return this.http.post<Jwtresponse>(AUTH_API + 'signin', {
       username: credentials.username,
       password: credentials.password
     }, httpOptions);
