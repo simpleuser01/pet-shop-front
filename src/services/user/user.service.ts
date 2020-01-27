@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {RegisterUser} from "../../model/client/RegisterUser/register-user";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {RegisterUser} from '../../model/client/RegisterUser/register-user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
 
-  getUserByUserName(userName: string) : Observable<RegisterUser>{
+  getUserByUserName(userName: string): Observable<RegisterUser> {
     return this.http.get<RegisterUser>(this.url + '/user/' + `${userName}`);
+  }
+
+  changeUserDetails(userName: string, changedUser): Observable<RegisterUser> {
+    return this.http.put<RegisterUser>(this.url + '/user/change/' + `${userName}`, changedUser);
   }
 }

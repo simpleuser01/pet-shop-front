@@ -22,6 +22,8 @@ import { AdminHeaderComponent } from './templates/admin-header/admin-header.comp
 import { HeaderComponent } from './templates/header/header.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UserComponent } from './user/user.component';
+import { ProductInfoComponent } from './product/product-info/product-info.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { UserComponent } from './user/user.component';
     AdminHeaderComponent,
     HeaderComponent,
     MainPageComponent,
-    UserComponent
+    UserComponent,
+    ProductInfoComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

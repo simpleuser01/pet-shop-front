@@ -26,23 +26,21 @@
       <div *ngIf="even && i < 3">
         <div class="card-deck">
           <div class="card" style="width: 30rem">
-            <img src="http://localhost:8080/petshop.by/image/{{products[i].productId}}" class="card-img-top" alt=ALO>
+            <img src="http://localhost:8080/petshop.by/image/{{product.productId}}" class="card-img-top" alt=ALO>
             <div class="card-body">
-              <h5 class="card-title">{{products[i].productName}}</h5>
+              <h5 class="card-title">{{product.productName}}</h5>
             </div>
           </div>
           <div class="card" style="width: 30rem">
-            <img src="http://localhost:8080/petshop.by/image/{{products[i+1].productId}}" class="card-img-top"
-                 alt=ALO>
+            <img src="http://localhost:8080/petshop.by/image/{{product.productId + 1}}" class="card-img-top" alt=ALO>
             <div class="card-body">
-              <h5 class="card-title">{{products[i + 1].productName}}</h5>
+              <h5 class="card-title">{{product.productName}}</h5>
             </div>
           </div>
           <div class="card" style="width: 30rem">
-            <img src="http://localhost:8080/petshop.by/image/{{products[i+2].productId}}" class="card-img-top"
-                 alt=ALO>
+            <img src="http://localhost:8080/petshop.by/image/{{product.productId + 2}}" class="card-img-top" alt=ALO>
             <div class="card-body">
-              <h5 class="card-title">{{products[i + 2].productName}}</h5>
+              <h5 class="card-title">{{product.productName}}</h5>
             </div>
           </div>
         </div>
@@ -52,7 +50,7 @@
 </div>
 <div>
   <div class="catalog_items row-cols-md-3" *ngIf="clickedSubCategory">
-    <div *ngFor="let product of products">
+    <div *ngFor="let product of products" (click)="getProductInfo(product)">
       <div>{{product.productId}}</div>
       <div>{{product.productName}}</div>
       <div>{{product.productDescription}}</div>
@@ -63,9 +61,9 @@
         {{size.productSizeValue}}
         {{size.productPrice}}
       </div>
-      <div>
+      <!--<div>
         <button (click)="addProductToCartList(product)">add to cart list</button>
-      </div>
+      </div>-->
     </div>
   </div>
 </div>

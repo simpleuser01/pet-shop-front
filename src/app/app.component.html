@@ -1,4 +1,9 @@
 <!--<app-type-list></app-type-list>-->
-<div (click)="getUserByUserName()">username: {{username}}</div>
-<button (click)="logout()">out</button>
+
+<div *ngIf="isLoggedIn">
+  <div (click)="getUserByUserName()">username: {{username}}</div>
+  <button (click)="logout()">out</button>
+
+</div>
+
 <router-outlet></router-outlet>

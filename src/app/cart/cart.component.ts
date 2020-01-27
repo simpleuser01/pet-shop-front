@@ -9,6 +9,8 @@ import {OrderProduct} from '../../model/order/order-product';
 import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
 import {UnregisterClient} from '../../model/client/Unregister/unregister-client';
 import {OrderWrapper} from '../../model/order/order-wrapper';
+import {TokenStorageService} from '../../services/security/token-storage.service';
+import {RegisterUser} from '../../model/client/RegisterUser/register-user';
 
 @Component({
   selector: 'app-cart',
@@ -16,6 +18,7 @@ import {OrderWrapper} from '../../model/order/order-wrapper';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  isLoggedIn = false;
   products: Array<Product>;
   newOrder = new Order();
   orderProducts: Array<OrderProduct>;
@@ -26,6 +29,7 @@ export class CartComponent implements OnInit {
   isCourierDeliveryShown = false;
   isDeliveryFormShown = false;
 //  unregisterClient: FormGroup;
+  registerUser: RegisterUser;
 
   orderWrapper = new OrderWrapper();
 
@@ -33,9 +37,17 @@ export class CartComponent implements OnInit {
   map: Map<number, number> = new Map<number, number>();
 
 
-  constructor(private cartService: CartService, private orderService: OrderService, private fb: FormBuilder) { }
+  constructor(private cartService: CartService, private orderService: OrderService, private fb: FormBuilder,
+              private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      this.registerUser = this.tokenStorageService.getUser();
+      console.log(this.registerUser);
+    }
+
     this.getCartList();
     this.quantity = 1;
     this.order = this.fb.group({

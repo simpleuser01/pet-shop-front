@@ -1,7 +1,12 @@
-<div>{{registerUser?.firstName}}</div>
-{{registerUser?.lastName}}
-{{registerUser?.email}}
-{{registerUser?.tel}}
-{{registerUser?.userName}}
+<div *ngIf="isLoggedIn">
+  <br>
+  имя<div>{{registerUser?.firstName}}</div><br>
+  фамилия<div>{{registerUser?.lastName}}</div><br>
+  емаил<div>{{registerUser?.email}}</div><br>
+  теляфон<div>{{registerUser?.tel}}</div><br>
+  узернэйм<div>{{registerUser?.userName}}</div><br>
+  <button (click)="changeUserDetails()">редактировать</button>
+</div>
+
 
 

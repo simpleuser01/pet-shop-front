@@ -3,6 +3,7 @@ import {OrderService} from '../../services/order/order.service';
 import {Order} from '../../model/order/order';
 import {OrderProduct} from '../../model/order/order-product';
 import {Product} from '../../model/product/product';
+import {TokenStorageService} from '../../services/security/token-storage.service';
 
 @Component({
   selector: 'app-order',
@@ -10,7 +11,6 @@ import {Product} from '../../model/product/product';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-
   orders: Array<Order>;
   orderProducts: Array<OrderProduct>;
   products: Array<Product>;
@@ -19,6 +19,7 @@ export class OrderComponent implements OnInit {
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {
+
     this.getAllOrders();
   }
 

@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../services/security/token-storage.service';
-import {RegisterUser} from "../model/client/RegisterUser/register-user";
-import {UserService} from "../services/user/user.service";
-import {Router} from "@angular/router";
+import {RegisterUser} from '../model/client/RegisterUser/register-user';
+import {UserService} from '../services/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
@@ -32,14 +32,14 @@ export class AppComponent implements OnInit{
  //     this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
-      console.log("app - roles: " + this.roles)
+      console.log('app - roles: ' + this.roles);
 
       this.roles.every(role => {
         if (role === 'ROLE_ADMIN') {
           this.authority = 'admin';
           console.log(this.authority);
           return false;
-        }else{
+        } else {
           this.authority = 'user';
           console.log(this.authority);
           return true;
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit{
   }
 
 
-  getUserByUserName(){
+  getUserByUserName() {
       this.router.navigate(['/user/' + this.username]);
   }
 

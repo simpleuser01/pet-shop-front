@@ -8,6 +8,7 @@ import {CartService} from '../../../services/cart/cart.service';
 import {ProductSize} from '../../../model/product/product-size';
 import {FlatTreeControl, NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
+import {Router} from '@angular/router';
 
 
 interface CategoryNode { // тестовый интерфейс
@@ -68,7 +69,7 @@ export class TypeListComponent implements OnInit {
     // эти две штучки тупо ради теста
     treeControl = new NestedTreeControl<CategoryNode>(node => node.children);
     dataSource = new MatTreeNestedDataSource<CategoryNode>();
-  constructor(private productService: ProductServiceService, private cartService: CartService) {
+  constructor(private productService: ProductServiceService, private cartService: CartService, private router: Router) {
     this.dataSource.data = TREE_DATA; // тут тоже и тут
   }
 
@@ -151,5 +152,12 @@ export class TypeListComponent implements OnInit {
     lalka.style.color = 'Red';
     console.log(event);
   }
+
+  getProductInfo(product: Product) {
+    this.router.navigate(['/product/' + product.productId]);
+    console.log(product);
+  }
+
+
 }
 

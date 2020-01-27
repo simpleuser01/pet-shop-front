@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/security/auth.service';
 import {element} from 'protractor';
 import {RegisterUser} from '../../../model/client/RegisterUser/register-user';
 import {TokenStorageService} from '../../../services/security/token-storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
   isLoginFailed = false;
   roles: string[] = [];
 
-  constructor(private auth: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private auth: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -66,5 +67,13 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
 
+
+  getCart() {
+    this.router.navigate(['/cart']);
+  }
+
+  getProducts() {
+    this.router.navigate(['/catalog']);
+  }
 
 }

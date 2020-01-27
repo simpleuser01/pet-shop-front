@@ -28,7 +28,7 @@
   <img style="margin-left: 250px" src="../../assets/empty-cart.jpg" alt="">
 </div>
 
-<form [formGroup]="order" class="container" [hidden]="isDeliveryFormShown">
+<form [formGroup]="order" class="container" [hidden]="isDeliveryFormShown" >
   <div class="custom-control custom-radio">
     <input [checked]="!isCourierDeliveryShown" [value]="false" value="курьером" formControlName="orderDeliveryType" type="radio"
            id="customRadio1" name="orderDeliveryType" class="custom-control-input">
@@ -40,6 +40,7 @@
     <label class="custom-control-label" for="customRadio2" (click)="showCourierDeliver(true)">Доставка
       самовывозом</label>
   </div>
+
   <div formGroupName="unregisterClient">
     <div class="needs-validation">
       <div class="form-row">
