@@ -1,0 +1,11 @@
+<div>{{product.productId}}</div>
+<div>{{product.productName}}</div>
+<div>{{product.productDescription}}</div>
+<div>{{product.productStructure}}</div>
+<div>{{product.productMaker.productMakerName}}</div>
+<img src="http://localhost:8080/petshop.by/image/{{product.productId}}" alt="">
+<div *ngFor="let size of product.productSizes" (click)="getSizeAndPrice(size)">
+  {{size.productSizeValue}}
+  {{size.productPrice}}
+</div>
+<button (click)="addProductToCartList(product)">добавить в корзину</button>
