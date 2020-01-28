@@ -51,7 +51,7 @@ export class CartComponent implements OnInit {
     this.getCartList();
     this.quantity = 1;
     this.order = this.fb.group({
-      orderDeliveryType : [''],
+      orderDeliveryType : ['rte'],
       orderDescription: ['выавыа'],
       unregisterClient: this.fb.group({
         clientFirstName: [''],

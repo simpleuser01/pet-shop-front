@@ -64,9 +64,19 @@
       <option value="" disabled>Выберите тип</option>
       <option  *ngFor="let productType of productTypes" [ngValue]="productType" >{{productType.productTypeName}}</option>
     </select>
+      <div *ngIf="currentFileUpload" class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+             aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+          {{progress.percentage}}%</div>
+      </div>
 
+      <label class="btn btn-default">
+        <input type="file" (change)="selectFile($event)">
+      </label>
 
-    <button id="button-add" class="btn btn-primary" (click)="onSubmit()">Добавить продукт</button>
+      <button class="btn btn-success" [disabled]="!selectedFiles" (click)="onSubmit()">Upload</button>
+      <br>
+   <!-- <button id="button-add" class="btn btn-primary" (click)="onSubmit()">Добавить продукт</button>-->
     </div>
   </div>
 </form>

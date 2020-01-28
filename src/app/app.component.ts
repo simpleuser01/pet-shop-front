@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
         if (role === 'ROLE_ADMIN') {
           this.authority = 'admin';
           console.log(this.authority);
+          this.showAdminBoard = true;
           return false;
         } else {
           this.authority = 'user';
@@ -77,5 +78,9 @@ export class AppComponent implements OnInit {
   logout() {
     this.tokenStorageService.signOut();
     window.location.reload();
+  }
+
+  getAdminPage() {
+    this.router.navigate(['/admin/orders/']);
   }
 }

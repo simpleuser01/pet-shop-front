@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../../model/product/product';
 import {ProductType} from '../../model/product/product-type';
@@ -87,6 +87,20 @@ export class ProductServiceService {
 
   getProductById(id: number): Observable<Product> {
     return this.httpClient.get<Product>(this.url + '/product/' + `${id}`);
+  }
+
+
+  pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
+    const formdata: FormData = new FormData();
+
+    formdata.append('file', file);
+
+    const req = new HttpRequest('POST', this.url + '/image/add', formdata, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.httpClient.request(req);
   }
 }
 

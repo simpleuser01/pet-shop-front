@@ -27,7 +27,7 @@
   {{showDeliveryForm(isDeliveryFormShown)}}
   <img style="margin-left: 250px" src="../../assets/empty-cart.jpg" alt="">
 </div>
-
+<div *ngIf="!isLoggedIn">
 <form [formGroup]="order" class="container" [hidden]="isDeliveryFormShown" >
   <div class="custom-control custom-radio">
     <input [checked]="!isCourierDeliveryShown" [value]="false" value="курьером" formControlName="orderDeliveryType" type="radio"
@@ -93,6 +93,12 @@
   <br>
 </form>
 
+<!--  <div *ngIf="isLoggedIn; else">
+    <h1>11</h1>
+  </div>-->
+</div>
+
+<div id="test">Ну здарова</div>
 <app-footer></app-footer>
 
 
