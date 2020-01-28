@@ -6,6 +6,7 @@ import {ProductServiceService} from '../../../services/product/product-service.s
 import {ProductSubcategory} from '../../../model/product/product-subcategory';
 import {ProductType} from '../../../model/product/product-type';
 import {ProductCategory} from '../../../model/product/product-category';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-product-add',
@@ -13,6 +14,11 @@ import {ProductCategory} from '../../../model/product/product-category';
   styleUrls: ['./product-add.component.scss']
 })
 export class ProductAddComponent implements OnInit {
+
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  progress: { percentage: number } = { percentage: 0 };
+
 
   isShowAddProduct = false;
   isShowAddType = false;
@@ -52,9 +58,11 @@ export class ProductAddComponent implements OnInit {
 
   onSubmit() {
     this.product = this.addFormGroup.value;
-
+    this.upload();
    // this.product.productMaker = this.productMaker;
+    this.product.productImage = this.currentFileUpload.name;
     this.productService.addProduct(this.product).subscribe();
+
   }
 
   changeProductMaker(productMaker: ProductMaker) {
@@ -88,5 +96,24 @@ export class ProductAddComponent implements OnInit {
 
   DeleteProduct() {
     this.isShowDeleteProduct = !this.isShowDeleteProduct;
+  }
+
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  upload() {
+    this.progress.percentage = 0;
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.productService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress.percentage = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        console.log('File is completely uploaded!');
+      }
+    });
+
+    this.selectedFiles = undefined;
   }
 }

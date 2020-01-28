@@ -22,4 +22,8 @@ export class UserEditComponent implements OnInit {
   getChangedUser() {
     this.userService.getUserByUserName(this.userName).subscribe(data => this.changedUser = data);
   }
+
+  changeUser() {
+    this.userService.changeUserDetails(this.userName, this.changedUser).subscribe();
+  }
 }
