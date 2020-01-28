@@ -51,7 +51,7 @@ const TREE_DATA: CategoryNode[] = [ // дичь
   styleUrls: ['./type-list.component.scss']
 })
 export class TypeListComponent implements OnInit {
-
+    items = [];
     productTypes: Array<ProductType>;
     productCategories: Array<ProductCategory>;
     productSubcategories: Array<ProductSubcategory>;
@@ -80,9 +80,9 @@ export class TypeListComponent implements OnInit {
     this.productService.getAllTypes()
       .subscribe(data => this.productTypes = data);
 
-
     this.productService.getAllProductsForMainPage().subscribe(data => this.products = data);
 
+    this.items = Array(10).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
    /* this.productService.getProductByType(this.clickedType)
       .subscribe(data => this.products = data);*/
   }
@@ -118,7 +118,6 @@ export class TypeListComponent implements OnInit {
     this.productService.getSubcategoryByCategory(this.clickedCategory, this.clickedType)
       .subscribe(data => this.productSubcategories = data);
   }
-
 
   getProductBySubcategory(subCategory: string) {
     this.clickedSubCategory = subCategory;

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TypeListComponent } from './product/type-list/type-list.component';
@@ -22,8 +21,8 @@ import { AdminHeaderComponent } from './templates/admin-header/admin-header.comp
 import { HeaderComponent } from './templates/header/header.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UserComponent } from './user/user.component';
-import { ProductInfoComponent } from './product/product-info/product-info.component';
-import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { ProductInfoComponent} from './product/product-info/product-info.component';
+import {UserEditComponent} from './user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,7 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
     MainPageComponent,
     UserComponent,
     ProductInfoComponent,
-    UserEditComponent
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +52,7 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
     MatSidenavModule,
     MatSliderModule,
     MatTreeModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

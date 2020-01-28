@@ -1,3 +1,4 @@
+<!--
 <div>{{product.productId}}</div>
 <div>{{product.productName}}</div>
 <div>{{product.productDescription}}</div>
@@ -8,4 +9,49 @@
   {{size.productSizeValue}}
   {{size.productPrice}}
 </div>
-<button (click)="addProductToCartList(product)">добавить в корзину</button>
+<button (click)="addProductToCartList(product)">Добавить в корзину</button>
+-->
+<!-- Left Column / Headphones Image -->
+<app-header></app-header>
+<main class="container">
+
+  <!-- Left Column / Headphones Image -->
+  <div class="left-column">
+    <img data-image="black" src="http://localhost:8080/petshop.by/image/{{product.productId}}" alt="" class="">
+    <img data-image="blue" src="http://localhost:8080/petshop.by/image/{{product.productId}}" alt="" class="">
+    <img data-image="red" class="active" src="http://localhost:8080/petshop.by/image/{{product.productId}}" alt="">
+  </div>
+
+
+  <!-- Right Column -->
+  <div class="right-column">
+
+    <!-- Product Description -->
+    <div class="product-description">
+      <span>{{product.productDescription}}</span>
+      <h1>{{product.productName}}</h1>
+      <p>{{product.productStructure}}</p>
+    </div>
+
+    <!-- Product Configuration -->
+    <div class="product-configuration">
+         <!-- Cable Configuration -->
+      <div class="cable-config">
+        <span>Разновидность</span>
+
+        <div *ngFor="let size of product.productSizes"class="cable-choose">
+          <button>{{size.productSizeValue}}</button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Product Pricing -->
+    <div class="product-price">
+      <span>{{product.productPrice}}</span>
+      <a (click)="addProductToCartList(product)" class="cart-btn">Добавить в корзину</a>
+    </div>
+    </div>
+</main>
+<app-footer></app-footer>

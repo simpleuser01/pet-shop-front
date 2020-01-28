@@ -43,11 +43,8 @@ export class AppComponent implements OnInit {
           this.authority = 'user';
           console.log(this.authority);
           return true;
-
         }
-
       });
-
     }
 
    /* if (this.tokenStorageService.getToken()) {
