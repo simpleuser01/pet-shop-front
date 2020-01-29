@@ -27,7 +27,7 @@
         <h6 class="card-title">{{product.productName}}</h6>
         <img src="http://localhost:8080/petshop.by/image/{{product.productId}}" alt="missing" (click)="getProductInfo(product)">
         <div class="text-center" id="sas"*ngFor="let size of product.productSizes">
-          <h6>{{size.productSizeValue + " " + size.productPrice+"BYN"}}</h6> <br/>
+          <div><h6>{{size.productSizeValue}}</h6><h6 id="price">{{size.productPrice+"BYN"}}</h6></div> <br/>
         </div>
       </div>
     </div>
