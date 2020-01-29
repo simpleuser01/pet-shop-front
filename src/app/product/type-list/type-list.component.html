@@ -21,34 +21,19 @@
         </div>
     </ul>
   </aside>
-  <main id="products">
-    <div *ngFor="let product of products; let i = index; let even = even;">
-      <div *ngIf="even && i < 3">
-        <div class="card-deck">
-          <div class="card" style="width: 30rem">
-            <img src="http://localhost:8080/petshop.by/image/{{product.productId}}" class="card-img-top" alt=ALO>
-            <div class="card-body">
-              <h5 class="card-title">{{product.productName}}</h5>
-            </div>
-          </div>
-          <div class="card" style="width: 30rem">
-            <img src="http://localhost:8080/petshop.by/image/{{product.productId + 1}}" class="card-img-top" alt=ALO>
-            <div class="card-body">
-              <h5 class="card-title">{{product.productName}}</h5>
-            </div>
-          </div>
-          <div class="card" style="width: 30rem">
-            <img src="http://localhost:8080/petshop.by/image/{{product.productId + 2}}" class="card-img-top" alt=ALO>
-            <div class="card-body">
-              <h5 class="card-title">{{product.productName}}</h5>
-            </div>
-          </div>
+  <main  class="shopping-cart" id="products">
+    <div class="card" *ngFor="let product of products;" >
+      <div class="card-img-top">
+        <h6 class="card-title">{{product.productName}}</h6>
+        <img src="http://localhost:8080/petshop.by/image/{{product.productId}}" alt="missing" (click)="getProductInfo(product)">
+        <div class="text-center" id="sas"*ngFor="let size of product.productSizes">
+          <h6>{{size.productSizeValue + " " + size.productPrice+"BYN"}}</h6> <br/>
         </div>
       </div>
     </div>
   </main>
 </div>
-<div>
+<!--<div>
   <div class="catalog_items row-cols-md-3" *ngIf="clickedSubCategory">
     <div *ngFor="let product of products" (click)="getProductInfo(product)">
       <div>{{product.productId}}</div>
@@ -56,25 +41,25 @@
       <div>{{product.productDescription}}</div>
       <div>{{product.productStructure}}</div>
       <div>{{product.productMaker.productMakerName}}</div>
-      <img src="http://localhost:8080/petshop.by/image/{{product.productId}}" alt="">
+      <img src="http://localhost:8080/petshop.by/image/{{product.productId}}" style="" alt="">
       <div *ngFor="let size of product.productSizes" (click)="getSizeAndPrice(size)">
         {{size.productSizeValue}}
         {{size.productPrice}}
       </div>
-      <!--<div>
+      &lt;!&ndash;<div>
         <button (click)="addProductToCartList(product)">add to cart list</button>
-      </div>-->
+      </div>&ndash;&gt;
     </div>
   </div>
-</div>
-<div id="lal1" *ngIf="clickedCategory">
+</div>-->
+<!--<div id="lal1" *ngIf="clickedCategory">
   <div *ngFor="let product of categoryProducts">
     <div>{{product.productName}}</div>
     <div class="catalog_items">{{product.productImage}}</div>
     <img src="http://localhost:8080/petshop.by/image/{{product.productId}}">
-    <!--   <img src="{{data}}">-->
+    &lt;!&ndash;   <img src="{{data}}">&ndash;&gt;
   </div>
-</div>
+</div>-->
 <app-footer></app-footer>
 
 

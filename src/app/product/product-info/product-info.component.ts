@@ -20,10 +20,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     this.productService.getProductById(this.productId).subscribe(data => this.product = data);
-
   }
   getSizeAndPrice(size: ProductSize) {
     this.productSize = size.productSizeValue;
