@@ -21,16 +21,16 @@ export class TokenStorageService {
   }
 
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+      return sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user) {
+  public saveUser(user: string) {
     window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    window.sessionStorage.setItem(USER_KEY, user);
   }
 
   public getUser() {
-    return JSON.parse(sessionStorage.getItem(USER_KEY));
+    return sessionStorage.getItem(USER_KEY);
   }
 
 
@@ -42,13 +42,13 @@ export class TokenStorageService {
    public getAuthorities(): string[] {
    this.roles = [];
 
-     if (sessionStorage.getItem(TOKEN_KEY)) {
+   if (sessionStorage.getItem(TOKEN_KEY)) {
 
          JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
            this.roles.push(authority.authority);
        });
      }
 
-    return this.roles;
+   return this.roles;
 }
 }

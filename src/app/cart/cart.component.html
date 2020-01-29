@@ -27,7 +27,7 @@
   {{showDeliveryForm(isDeliveryFormShown)}}
   <img style="margin-left: 250px" src="../../assets/empty-cart.jpg" alt="">
 </div>
-<div *ngIf="!isLoggedIn">
+<div *ngIf="!isLoggedIn; else test">
 <form [formGroup]="order" class="container" [hidden]="isDeliveryFormShown" >
   <div class="custom-control custom-radio">
     <input [checked]="!isCourierDeliveryShown" [value]="false" value="курьером" formControlName="orderDeliveryType" type="radio"
@@ -90,15 +90,62 @@
       <button id="button-add" class="btn btn-warning" (click)="addToOrders()">Добавить продукт</button>
     </div>
   </div>
+
   <br>
+
+
 </form>
-
-<!--  <div *ngIf="isLoggedIn; else">
-    <h1>11</h1>
-  </div>-->
 </div>
+  <ng-template #test>
+      <div class="needs-validation">
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom01">Имя</label>
+            <input [(ngModel)]="registerUserInfo.userName" type="text" class="form-control" id="validationCustom001" value=""
+                   required>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustomUsername">Электронная почта</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrependd">@</span>
+              </div>
+              <input [(ngModel)]="registerUserInfo.email" type="email" class="form-control" id="validationCustomUsernamee"
+                     aria-describedby="inputGroupPrepend" required>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom02">Номер телефона</label>
+            <input [(ngModel)]="registerUserInfo.tel" type="telephone" class="form-control" id="validationCustom002" value=""
+                   required>
+          </div>
+        </div>
+        <div class="form-row" [(ngModel)]="registerUserInfo.registerClientAddress" *ngIf="isCourierDeliveryShown">
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom03">Страна</label>
+            <input type="text" [(ngModel)]="registerUserInfo.registerClientAddress.addressCountry" class="form-control" id="validationCustom003" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom04">Город</label>
+            <input type="text" [(ngModel)]="registerUserInfo.registerClientAddress.addressCity" class="form-control" id="validationCustom004" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom05">Улица</label>
+            <input type="text" [(ngModel)]="registerUserInfo.registerClientAddress.addressStreet" class="form-control" id="validationCustom005" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom06">Дом</label>
+            <input type="text" [(ngModel)]="registerUserInfo.registerClientAddress.addressHome" class="form-control" id="validationCustom006" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom07">Квартира</label>
+            <input type="text" [(ngModel)]="registerUserInfo.registerClientAddress.addressFlat" class="form-control" id="validationCustom007" required>
+          </div>
+        </div>
+        <button id="button-add1" class="btn btn-warning" (click)="addToOrdersForRegisterUser()">Добавить продукт</button>
+      </div>
 
-<div id="test">Ну здарова</div>
+  </ng-template>
+
+
 <app-footer></app-footer>
-
-

@@ -16,9 +16,17 @@ export class OrderComponent implements OnInit {
   products: Array<Product>;
   id: number;
 
-  constructor(private orderService: OrderService) { }
+  isLoggedIn = false;
+  username: string;
+
+  constructor(private orderService: OrderService, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
+    if (this.tokenStorageService.getToken()) {
+      this.isLoggedIn = true;
+      this.username = this.tokenStorageService.getUser();
+    }
+
 
     this.getAllOrders();
   }

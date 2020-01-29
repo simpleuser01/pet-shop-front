@@ -21,7 +21,28 @@ export class AppComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.tokenStorageService.getToken()) {
+        console.log(this.tokenStorageService.getToken());
+        this.roles = this.tokenStorageService.getAuthorities();
+        console.log(this.tokenStorageService.getUser());
+        this.roles.every(role => {
+          if (role === 'ROLE_ADMIN') {
+            this.authority = 'admin';
+            return false;
+          } else if (role === 'ROLE_PM') {
+            this.authority = 'pm';
+            return false;
+          }
+          this.authority = 'user';
+          return true;
+        });
+
+    }
+
+
+
+   /* this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
@@ -46,7 +67,7 @@ export class AppComponent implements OnInit {
           return true;
         }
       });
-    }
+    }*/
 
    /* if (this.tokenStorageService.getToken()) {
        this.user = this.tokenStorageService.getUser();

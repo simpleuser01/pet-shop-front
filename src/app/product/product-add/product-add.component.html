@@ -36,12 +36,30 @@
     <div>
       <label for="ex1">Наименование товара</label>
       <input name="productName" formControlName="productName" class="form-control" id="ex1" type="text">
+            <div class="alert alert-danger"
+                 *ngIf="addFormGroup.controls['productName'].invalid && addFormGroup.controls['productName'].touched">
+              Введите наименование продукта
+            </div>
       <label for="ex2">Наименование на английском</label>
       <input name="productName" formControlName="productEngName" class="form-control" id="ex2" type="text">
+              <div class="alert alert-danger"
+                   *ngIf="addFormGroup.controls['productEngName'].invalid && addFormGroup.controls['productEngName'].touched">
+                Введите наименование продукта на агл. языке
+              </div>
       <label for="ex3">Описание товара</label>
       <input name="productName" formControlName="productDescription" class="form-control" id="ex3" type="text">
+
+            <div class="alert alert-danger"
+                 *ngIf="addFormGroup.controls['productDescription'].invalid && addFormGroup.controls['productDescription'].touched">
+              Введите описание товара
+            </div>
       <label for="ex4">Структура</label>
       <textarea name="productName" formControlName="productStructure" class="form-control" id="ex4" type="message"></textarea>
+
+          <div class="alert alert-danger"
+               *ngIf="addFormGroup.controls['productStructure'].invalid && addFormGroup.controls['productStructure'].touched">
+            Введите структуру товара
+          </div>
     </div>
     <div>
     <label for="prod">Изготовитель</label>
@@ -74,9 +92,14 @@
         <input type="file" (change)="selectFile($event)">
       </label>
 
-      <button class="btn btn-success" [disabled]="!selectedFiles" (click)="onSubmit()">Upload</button>
+      <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Загрузить изображение</button>
       <br>
-   <!-- <button id="button-add" class="btn btn-primary" (click)="onSubmit()">Добавить продукт</button>-->
+    <button id="button-add" class="btn btn-primary" [disabled]="addFormGroup.invalid" (click)="onSubmit()">Добавить продукт</button>
+      <div *ngIf="success">
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Товар добавлен</h4>
+        </div>
+      </div>
     </div>
   </div>
 </form>

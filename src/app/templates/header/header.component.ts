@@ -23,14 +23,25 @@ export class HeaderComponent implements OnInit {
   isLoginFailed = false;
   roles: string[] = [];
 
+  username: string;
+info: any;
   constructor(private auth: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
+      this.username =  this.tokenStorage.getUser();
+      console.log(this.username);
          }
+    this.info = {
+      token: this.tokenStorage.getToken(),
+      username: this.tokenStorage.getUser(),
+      authorities: this.tokenStorage.getAuthorities()
+    };
+    console.log(this.info);
   }
+
 
   register() {
     this.auth.register(this.registerUser).subscribe(data => {
@@ -48,7 +59,7 @@ export class HeaderComponent implements OnInit {
       data => {
         console.log(data);
         this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
+        this.tokenStorage.saveUser(data.username);
         this.tokenStorage.saveAuthorities(data.authorities);
 
         this.isLoginFailed = false;
@@ -74,6 +85,11 @@ export class HeaderComponent implements OnInit {
 
   getProducts() {
     this.router.navigate(['/catalog']);
+  }
+
+  logout() {
+    this.tokenStorage.signOut();
+    window.location.reload();
   }
 
 

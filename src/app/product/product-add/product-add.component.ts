@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../../../model/product/product';
 import {ProductMaker} from '../../../model/product/product-maker';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductServiceService} from '../../../services/product/product-service.service';
 import {ProductSubcategory} from '../../../model/product/product-subcategory';
 import {ProductType} from '../../../model/product/product-type';
@@ -19,7 +19,7 @@ export class ProductAddComponent implements OnInit {
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
 
-
+  success = false;
   isShowAddProduct = false;
   isShowAddType = false;
   isShowAddCategory = false;
@@ -43,14 +43,14 @@ export class ProductAddComponent implements OnInit {
 
 
     this.addFormGroup = new FormGroup({
-      productName: new FormControl(),
-      productEngName: new FormControl(),
-      productDescription: new FormControl(),
-      productStructure: new FormControl(),
-      productMaker: new FormControl(),
-      productSubcategory: new FormControl(),
-      productCategory: new FormControl(),
-      productType: new FormControl()
+      productName: new FormControl('', Validators.required),
+      productEngName: new FormControl('', Validators.required),
+      productDescription: new FormControl('', Validators.required),
+      productStructure: new FormControl('', Validators.required),
+      productMaker: new FormControl('', Validators.required),
+      productSubcategory: new FormControl('', Validators.required),
+      productCategory: new FormControl('', Validators.required),
+      productType: new FormControl('', Validators.required)
       /*productImage: new FormControl(),*/
 
     });
@@ -58,10 +58,11 @@ export class ProductAddComponent implements OnInit {
 
   onSubmit() {
     this.product = this.addFormGroup.value;
-    this.upload();
+   // this.upload();
    // this.product.productMaker = this.productMaker;
     this.product.productImage = this.currentFileUpload.name;
     this.productService.addProduct(this.product).subscribe();
+    this.success = true;
 
   }
 

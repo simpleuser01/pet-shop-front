@@ -1,3 +1,5 @@
+{{username}}
+<button *ngIf="isLoggedIn" (click)="logout()">out</button>
 <div id="cart-login">
 
   <a id="login" class="btn btn-warning" data-toggle="modal" data-target=#modalLRForm><i class="fa fa-sign-in"></i> Войти</a>
@@ -139,6 +141,9 @@
                 <i class="fas fa-envelope prefix"></i>
                 <input type="text" id="modalLRInput10" class="form-control form-control-sm validate" [(ngModel)]="login.username">
                 <label data-error="wrong" data-success="right" for="modalLRInput10">Имя пользователя</label>
+                <div *ngIf="isLoginFailed" class="alert alert-danger">
+                  Login failed: {{errorMessage}}
+                </div>
               </div>
 
               <div class="md-form form-sm mb-4">
@@ -165,8 +170,11 @@
             <div class="modal-body">
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="text" id="modalLRInput1" class="form-control form-control-sm validate" [(ngModel)]="registerUser.firstName">
+                <input type="text" id="modalLRInput1" class="form-control form-control-sm validate" [(ngModel)]="registerUser.firstName" #firstName ="ngModel" name="firstName">
                 <label data-error="wrong" data-success="right" for="modalLRInput1">Имя</label>
+                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                <div *ngIf="firstName.errors.required">Введите имя</div>
+               </div>
               </div>
 
               <div class="md-form form-sm mb-5">

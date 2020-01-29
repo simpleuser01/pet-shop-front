@@ -1,7 +1,7 @@
-import { Jwtresponse } from './jwtresponse';
+import { JWTResponse } from './JWTResponse';
 
 describe('JWTResponce', () => {
   it('should create an instance', () => {
-    expect(new Jwtresponse()).toBeTruthy();
+    expect(new JWTResponse()).toBeTruthy();
   });
 });

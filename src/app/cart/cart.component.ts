@@ -11,6 +11,7 @@ import {UnregisterClient} from '../../model/client/Unregister/unregister-client'
 import {OrderWrapper} from '../../model/order/order-wrapper';
 import {TokenStorageService} from '../../services/security/token-storage.service';
 import {RegisterUser} from '../../model/client/RegisterUser/register-user';
+import {UserService} from '../../services/user/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -21,6 +22,7 @@ export class CartComponent implements OnInit {
   isLoggedIn = false;
   products: Array<Product>;
   newOrder = new Order();
+  newOrder1 = new Order();
   orderProducts: Array<OrderProduct>;
   orderProduct = new OrderProduct();
   quantity: number;
@@ -30,26 +32,32 @@ export class CartComponent implements OnInit {
   isDeliveryFormShown = false;
 //  unregisterClient: FormGroup;
   registerUser: RegisterUser;
+  registerUserInfo = new RegisterUser();
 
   orderWrapper = new OrderWrapper();
 
-
+  username: string;
   map: Map<number, number> = new Map<number, number>();
 
 
   constructor(private cartService: CartService, private orderService: OrderService, private fb: FormBuilder,
-              private tokenStorageService: TokenStorageService) { }
+              private tokenStorageService: TokenStorageService, private userService: UserService) { }
 
   ngOnInit() {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+ /*   this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
-      this.registerUser = this.tokenStorageService.getUser();
-      console.log(this.registerUser);
-    }
+      this.username  = this.tokenStorageService.getUser();
+     // console.log( this.registerUser);
+      console.log(this.username);
+     // this.userService.getUserByUserName(this.registerUser.userName).subscribe(data => this.registerUserInfo = data);
+     // console.log(registerUserInfo);
+    }*/
+
 
     this.getCartList();
     this.quantity = 1;
+    if (!this.isLoggedIn) {
     this.order = this.fb.group({
       orderDeliveryType : ['rte'],
       orderDescription: ['выавыа'],
@@ -66,7 +74,7 @@ export class CartComponent implements OnInit {
           })
       })
     });
-
+  }
    // this.map.set(1, this.quantity);
 
   }
@@ -108,6 +116,22 @@ export class CartComponent implements OnInit {
   //  console.log(this.map);
   }
 
+  addToOrdersForRegisterUser() {
+    this.newOrder1.orderDeliveryType = 'cour';
+    this.newOrder1.orderDescription = 'tt';
+
+    this.newOrder1.registerClient = this.registerUserInfo;
+    this.newOrder1.registerClient.firstName = '1';
+    this.newOrder1.registerClient.lastName = '1';
+    this.orderProduct.productQuantity = this.quantity;
+    this.orderWrapper.order = this.newOrder1;
+    /*  this.orderWrapper.orderProduct = this.orderProduct;*/
+    this.orderWrapper.map = this.mapToObj(this.map);
+    this.orderService.addOrderForRegisterUser(this.orderWrapper).subscribe();
+    // console.log(this.newOrder);
+    console.log(this.orderWrapper);
+    //  console.log(this.map);
+  }
 
   mapToObj(strMap) {
     const obj = Object.create(null);

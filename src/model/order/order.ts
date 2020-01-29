@@ -1,5 +1,6 @@
 import {OrderProduct} from './order-product';
 import {UnregisterClient} from '../client/Unregister/unregister-client';
+import {RegisterUser} from '../client/RegisterUser/register-user';
 
 export class Order {
   orderId: number;
@@ -8,5 +9,6 @@ export class Order {
   orderDescription: string;
   orderProducts: OrderProduct[];
   unregisterClient: UnregisterClient;
+  registerClient: RegisterUser;
 
 }

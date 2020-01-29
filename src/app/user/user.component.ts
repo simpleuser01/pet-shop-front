@@ -12,14 +12,15 @@ import {Router} from '@angular/router';
 export class UserComponent implements OnInit {
   registerUser: RegisterUser;
   isLoggedIn = false;
+  username: string;
   constructor(private  userService: UserService, private tokenStorageService: TokenStorageService, private router: Router) { }
 
   ngOnInit() {
     if (this.tokenStorageService.getToken()) {
-      const user = this.tokenStorageService.getUser();
+      this.username = this.tokenStorageService.getUser();
       this.isLoggedIn = true;
-      console.log(user.username);
-      this.userService.getUserByUserName(user.username).subscribe(data => this.registerUser = data);
+      console.log(this.username);
+      this.userService.getUserByUserName(this.username).subscribe(data => this.registerUser = data);
     }
     // this.userService.getUserByUserName('user2').subscribe(data => this.registerUser = data);
   }

@@ -15,11 +15,11 @@ export class OrderService {
 
 
   getAllOrders(): Observable<Order[]> {
-    return this.httpClient.get<Order[]>(this.url + '/admin/orders');
+    return this.httpClient.get<Order[]>(this.url + '/admin/orderss');
   }
 
   getProductsByOrderId(id: number): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.url + '/admin/orders/' + `${id}`);
+    return this.httpClient.get<Product[]>(this.url + '/admin/orderss/' + `${id}`);
   }
 
   addOrder(order: OrderWrapper): Observable<Order[]> {
@@ -29,5 +29,9 @@ export class OrderService {
 
   deleteOrder(id: number) {
     return this.httpClient.delete(this.url + '/admin/orders/' + `${id}`);
+  }
+
+  addOrderForRegisterUser(order: OrderWrapper): Observable<Order[]> {
+    return  this.httpClient.post<Order[]>(this.url   + '/admin/order/', order );
   }
 }
